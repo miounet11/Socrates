@@ -14,6 +14,12 @@ from socrates.config import find_config_path, load_config, write_default_config
 from socrates.exceptions import ConfigurationError, ProviderError
 from socrates.models import ContentDraft, ContentRequest, GenerationMode, ReviewReport
 from socrates.presets import build_request_from_preset, list_presets
+from socrates.site_automation import (
+    DEFAULT_LOCALES,
+    DEFAULT_STATE_PATH,
+    DEFAULT_TOPICS_PER_RUN,
+    generate_daily_site_content,
+)
 
 app = typer.Typer(
     help="Rubric-guided content generation for publishable drafts.",
@@ -38,6 +44,30 @@ OUTPUT_PATH_OPTION = typer.Option(
     "--output",
     resolve_path=True,
     help="Write the YAML template to a file instead of stdout.",
+)
+PUBLISH_DIR_OPTION = typer.Option(
+    Path("site"),
+    "--publish-dir",
+    resolve_path=True,
+    help="Static site directory to update with generated library pages.",
+)
+STATE_FILE_OPTION = typer.Option(
+    DEFAULT_STATE_PATH,
+    "--state-file",
+    resolve_path=True,
+    help="State file used to avoid publishing the same topic twice.",
+)
+TOPICS_PER_RUN_OPTION = typer.Option(
+    DEFAULT_TOPICS_PER_RUN,
+    "--topics-per-run",
+    min=1,
+    max=5,
+    help="How many topic seeds to publish in one run.",
+)
+LOCALES_OPTION = typer.Option(
+    ",".join(DEFAULT_LOCALES),
+    "--locales",
+    help="Comma-separated locales to publish, for example en-US,zh-CN.",
 )
 
 
@@ -73,6 +103,21 @@ def _load_draft_markdown(path: Path) -> ContentDraft:
 
 def _client_from_workspace(start_path: Path | None = None) -> Socrates:
     return Socrates.from_config(start_path=start_path)
+
+
+def _parse_site_locales(raw_locales: str) -> tuple[str, ...]:
+    supported = set(DEFAULT_LOCALES)
+    locales = tuple(dict.fromkeys(part.strip() for part in raw_locales.split(",") if part.strip()))
+    if not locales:
+        raise typer.BadParameter("At least one locale must be provided.")
+
+    invalid = [locale for locale in locales if locale not in supported]
+    if invalid:
+        valid = ", ".join(DEFAULT_LOCALES)
+        raise typer.BadParameter(
+            f"Unsupported locale(s): {', '.join(invalid)}. Supported locales: {valid}."
+        )
+    return locales
 
 
 def _emit_json(model: BaseModel) -> None:
@@ -268,6 +313,48 @@ def doctor() -> None:
 
     if not api_key_present:
         raise typer.Exit(code=1)
+
+
+@app.command("site-generate")
+def site_generate(
+    publish_dir: Path = PUBLISH_DIR_OPTION,
+    state_file: Path = STATE_FILE_OPTION,
+    topics_per_run: int = TOPICS_PER_RUN_OPTION,
+    locales: str = LOCALES_OPTION,
+    json_output: bool = JSON_OUTPUT_OPTION,
+) -> None:
+    """Generate evergreen website library pages and rebuild sitemap/indexes."""
+
+    selected_locales = _parse_site_locales(locales)
+    publish_dir.mkdir(parents=True, exist_ok=True)
+
+    try:
+        client = _client_from_workspace(Path.cwd())
+        summary = generate_daily_site_content(
+            client,
+            publish_dir=publish_dir,
+            state_path=state_file,
+            topics_per_run=topics_per_run,
+            locales=selected_locales,
+        )
+    except (ConfigurationError, ProviderError) as exc:
+        typer.echo(str(exc), err=True)
+        raise typer.Exit(code=1) from exc
+
+    if json_output:
+        _emit_json(summary)
+        return
+
+    typer.echo(
+        "Generated "
+        f"{len(summary.generated_seed_keys)} topic(s), "
+        f"{len(summary.generated_pages)} page(s), "
+        f"skipped {len(summary.skipped_seed_keys)} topic(s)."
+    )
+    if summary.generated_pages:
+        typer.echo("Pages:")
+        for page in summary.generated_pages:
+            typer.echo(f"- {page}")
 
 
 def main() -> None:

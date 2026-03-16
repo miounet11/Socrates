@@ -19,4 +19,6 @@ def build_provider(config: SocratesConfig) -> LLMProvider:
         base_url=config.provider.base_url,
         timeout_seconds=config.generation.timeout_seconds,
         fallback_to_prompt_json=config.generation.fallback_to_prompt_json,
+        max_retries=config.generation.max_retries,
+        retry_backoff_seconds=config.generation.retry_backoff_seconds,
     )

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import time
 from typing import Any
 
 import httpx
@@ -22,11 +23,15 @@ class OpenAICompatibleProvider(LLMProvider):
         base_url: str,
         timeout_seconds: float = 60.0,
         fallback_to_prompt_json: bool = True,
+        max_retries: int = 2,
+        retry_backoff_seconds: float = 2.0,
     ) -> None:
         self.api_key = api_key
         self.base_url = base_url.rstrip("/")
         self.timeout_seconds = timeout_seconds
         self.fallback_to_prompt_json = fallback_to_prompt_json
+        self.max_retries = max_retries
+        self.retry_backoff_seconds = retry_backoff_seconds
 
     def structured_completion(
         self,
@@ -96,20 +101,28 @@ class OpenAICompatibleProvider(LLMProvider):
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
         }
-        try:
-            response = httpx.post(
-                f"{self.base_url}/chat/completions",
-                headers=headers,
-                json=payload,
-                timeout=self.timeout_seconds,
-            )
-        except httpx.HTTPError as exc:
-            raise ProviderError(f"Provider request failed: {exc}") from exc
+        for attempt in range(self.max_retries + 1):
+            try:
+                response = httpx.post(
+                    f"{self.base_url}/chat/completions",
+                    headers=headers,
+                    json=payload,
+                    timeout=self.timeout_seconds,
+                )
+            except httpx.HTTPError as exc:
+                if attempt < self.max_retries:
+                    time.sleep(self.retry_backoff_seconds * (attempt + 1))
+                    continue
+                raise ProviderError(f"Provider request failed: {exc}") from exc
 
-        if response.status_code >= 400:
-            raise ProviderError(
-                f"Provider returned {response.status_code}: {response.text[:400]}"
-            )
+            if response.status_code >= 400:
+                if self._is_retryable_status(response.status_code) and attempt < self.max_retries:
+                    time.sleep(self.retry_backoff_seconds * (attempt + 1))
+                    continue
+                raise ProviderError(
+                    f"Provider returned {response.status_code}: {response.text[:400]}"
+                )
+            break
 
         try:
             payload = response.json()
@@ -118,6 +131,9 @@ class OpenAICompatibleProvider(LLMProvider):
         if not isinstance(payload, dict):
             raise ProviderError("Provider returned a non-object JSON response.")
         return payload
+
+    def _is_retryable_status(self, status_code: int) -> bool:
+        return status_code in {408, 409, 429, 500, 502, 503, 504}
 
     def _extract_content(self, payload: dict[str, Any]) -> str:
         try:

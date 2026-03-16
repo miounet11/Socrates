@@ -8,6 +8,7 @@ from typer.testing import CliRunner
 from socrates.cli import app
 from socrates.client import Socrates
 from socrates.config import SocratesConfig
+from socrates.site_automation import GenerationSummary
 from tests.conftest import StubProvider
 
 runner = CliRunner()
@@ -123,3 +124,35 @@ def test_review_outputs_summary(tmp_path: Path, monkeypatch, content_request) ->
     assert result.exit_code == 0
     assert "Publishability score:" in result.stdout
     assert "game-changing" in result.stdout
+
+
+def test_site_generate_outputs_summary(tmp_path: Path, monkeypatch) -> None:
+    provider = StubProvider([])
+
+    monkeypatch.setattr(
+        "socrates.cli._client_from_workspace",
+        lambda _path: Socrates(provider, config=SocratesConfig()),
+    )
+    monkeypatch.setattr(
+        "socrates.cli.generate_daily_site_content",
+        lambda *_args, **_kwargs: GenerationSummary(
+            generated_seed_keys=["content_brief:guide"],
+            generated_pages=["library/content_brief-guide.html"],
+            skipped_seed_keys=[],
+        ),
+    )
+
+    result = runner.invoke(
+        app,
+        [
+            "site-generate",
+            "--publish-dir",
+            str(tmp_path / "site"),
+            "--state-file",
+            str(tmp_path / "state.json"),
+        ],
+    )
+
+    assert result.exit_code == 0
+    assert "Generated 1 topic(s), 1 page(s), skipped 0 topic(s)." in result.stdout
+    assert "library/content_brief-guide.html" in result.stdout

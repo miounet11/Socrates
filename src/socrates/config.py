@@ -46,6 +46,8 @@ class GenerationSettings(BaseModel):
 
     fallback_to_prompt_json: bool = True
     timeout_seconds: float = Field(default=60.0, gt=0.0)
+    max_retries: int = Field(default=2, ge=0)
+    retry_backoff_seconds: float = Field(default=2.0, ge=0.0)
 
 
 class SocratesConfig(BaseModel):
@@ -93,6 +95,9 @@ def load_config(start_path: Path | None = None) -> SocratesConfig:
     env_outline_model = os.getenv("SOCRATES_OUTLINE_MODEL")
     env_draft_model = os.getenv("SOCRATES_DRAFT_MODEL")
     env_review_model = os.getenv("SOCRATES_REVIEW_MODEL")
+    env_timeout_seconds = os.getenv("SOCRATES_TIMEOUT_SECONDS")
+    env_max_retries = os.getenv("SOCRATES_MAX_RETRIES")
+    env_retry_backoff_seconds = os.getenv("SOCRATES_RETRY_BACKOFF_SECONDS")
 
     provider = config.provider.model_copy(
         update={
@@ -109,7 +114,28 @@ def load_config(start_path: Path | None = None) -> SocratesConfig:
             "review_model": env_review_model or config.models.review_model,
         }
     )
-    return config.model_copy(update={"provider": provider, "models": models})
+    generation = config.generation.model_copy(
+        update={
+            "timeout_seconds": (
+                float(env_timeout_seconds)
+                if env_timeout_seconds is not None
+                else config.generation.timeout_seconds
+            ),
+            "max_retries": (
+                int(env_max_retries)
+                if env_max_retries is not None
+                else config.generation.max_retries
+            ),
+            "retry_backoff_seconds": (
+                float(env_retry_backoff_seconds)
+                if env_retry_backoff_seconds is not None
+                else config.generation.retry_backoff_seconds
+            ),
+        }
+    )
+    return config.model_copy(
+        update={"provider": provider, "models": models, "generation": generation}
+    )
 
 
 def write_default_config(destination: Path | None = None, *, force: bool = False) -> Path:
@@ -136,6 +162,8 @@ temperature = 0.2
 [generation]
 fallback_to_prompt_json = true
 timeout_seconds = 60.0
+max_retries = 2
+retry_backoff_seconds = 2.0
 """
     target.write_text(template, encoding="utf-8")
     return target

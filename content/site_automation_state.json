@@ -1,0 +1,64 @@
+{
+  "published_seed_keys": [
+    "content_brief:guide",
+    "content_frame:guide"
+  ],
+  "articles": [
+    {
+      "seed_key": "content_brief:guide",
+      "slug": "content_brief-guide",
+      "locale": "en-US",
+      "title": "What is content brief? A practical guide for content operators and product marketers",
+      "summary": "A useful content brief does more than describe a topic. It defines the standard the final page must satisfy.",
+      "meta_description": "A practical guide to content briefs for AI and B2B teams that need clearer standards, stronger structure, and more publishable drafts.",
+      "path": "library/content_brief-guide.html",
+      "url": "https://ixinxiang.xyz/library/content_brief-guide.html",
+      "cluster": "Content Operations",
+      "published_at": "2026-03-16T16:30:00+00:00",
+      "review_score": 92,
+      "primary_keyword": "content brief"
+    },
+    {
+      "seed_key": "content_frame:guide",
+      "slug": "content_frame-guide",
+      "locale": "en-US",
+      "title": "What is content frame? A practical guide for B2B content teams",
+      "summary": "A content frame is the decision layer that tells a draft what must be persuasive, credible, and deliberately avoided.",
+      "meta_description": "Learn what a content frame is and how B2B teams use it to improve audience fit, structure, and publishable AI-assisted drafts.",
+      "path": "library/content_frame-guide.html",
+      "url": "https://ixinxiang.xyz/library/content_frame-guide.html",
+      "cluster": "Strategy Layer",
+      "published_at": "2026-03-16T16:30:00+00:00",
+      "review_score": 92,
+      "primary_keyword": "content frame"
+    },
+    {
+      "seed_key": "content_brief:guide",
+      "slug": "content_brief-guide",
+      "locale": "zh-CN",
+      "title": "内容 brief 是什么? 给 内容运营和产品营销团队 的实用指南",
+      "summary": "真正有用的内容 brief, 不是只写主题, 而是先把一篇内容必须满足的标准写清楚。",
+      "meta_description": "面向 AI 与 B2B 团队的内容 brief 指南, 帮你把标准、结构和发布质量前置到写作之前。",
+      "path": "zh/library/content_brief-guide.html",
+      "url": "https://ixinxiang.xyz/zh/library/content_brief-guide.html",
+      "cluster": "内容运营",
+      "published_at": "2026-03-16T16:30:00+00:00",
+      "review_score": 92,
+      "primary_keyword": "内容 brief"
+    },
+    {
+      "seed_key": "content_frame:guide",
+      "slug": "content_frame-guide",
+      "locale": "zh-CN",
+      "title": "内容 frame 是什么? 给 B2B 内容团队 的实用指南",
+      "summary": "内容 frame 就是那一层先行标准, 用来告诉草稿哪些点必须有说服力、可信度, 以及哪些表达必须避开。",
+      "meta_description": "了解什么是内容 frame, 以及 B2B 团队如何用它提升受众匹配、结构质量和可发布性。",
+      "path": "zh/library/content_frame-guide.html",
+      "url": "https://ixinxiang.xyz/zh/library/content_frame-guide.html",
+      "cluster": "策略层",
+      "published_at": "2026-03-16T16:30:00+00:00",
+      "review_score": 92,
+      "primary_keyword": "内容 frame"
+    }
+  ]
+}
