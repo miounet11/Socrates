@@ -9,6 +9,7 @@ DOCROOT="${DOCROOT:-/www/wwwroot/ixinxiang.xyz}"
 TOPICS_PER_RUN="${TOPICS_PER_RUN:-2}"
 LOCALES="${LOCALES:-en-US,zh-CN}"
 VENV_DIR="${VENV_DIR:-$REPO_DIR/.venv}"
+SYSTEM_PYTHON="${SYSTEM_PYTHON:-$(command -v python3.11 || command -v python3)}"
 PYTHON_BIN="${PYTHON_BIN:-$VENV_DIR/bin/python}"
 PIP_BIN="${PIP_BIN:-$VENV_DIR/bin/pip}"
 SOCRATES_BIN="${SOCRATES_BIN:-$VENV_DIR/bin/socrates}"
@@ -21,7 +22,7 @@ if ! git pull --ff-only; then
 fi
 
 if [[ ! -x "$PYTHON_BIN" ]]; then
-  python3 -m venv "$VENV_DIR"
+  "$SYSTEM_PYTHON" -m venv "$VENV_DIR"
 fi
 
 "$PIP_BIN" install --disable-pip-version-check -q -e "$REPO_DIR"
