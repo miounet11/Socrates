@@ -29,6 +29,9 @@ rsync -a --delete \
   --exclude 'library/' \
   --exclude 'zh/library/' \
   "$REPO_DIR/site/" "$OUTPUT_DIR/"
+mkdir -p "$OUTPUT_DIR/library" "$OUTPUT_DIR/zh/library"
+rsync -a "$REPO_DIR/site/library/" "$OUTPUT_DIR/library/"
+rsync -a "$REPO_DIR/site/zh/library/" "$OUTPUT_DIR/zh/library/"
 
 "$SOCRATES_BIN" site-generate \
   --publish-dir "$OUTPUT_DIR" \
