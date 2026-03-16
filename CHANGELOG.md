@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2 - 2026-03-16
+
+- Aligned packaged versioning with the published website deployment release.
+- Rebuilt release assets so GitHub release artifacts match the tagged version.
+
 ## 0.1.1 - 2026-03-16
 
 - Added a static SEO-focused product site in `site/`.
