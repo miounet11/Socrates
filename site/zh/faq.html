@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socrates FAQ | Provider、路由模式、审稿边界与部署方式</title>
+    <meta
+      name="description"
+      content="Socrates 常见问题：它是什么、它不是什么、什么时候该用 full mode、review 能做什么，以及当前支持哪些 provider。"
+    />
+    <link rel="canonical" href="https://ixinxiang.xyz/zh/faq.html" />
+    <link rel="alternate" hreflang="en" href="https://ixinxiang.xyz/faq.html" />
+    <link rel="alternate" hreflang="zh-CN" href="https://ixinxiang.xyz/zh/faq.html" />
+    <link rel="alternate" hreflang="x-default" href="https://ixinxiang.xyz/faq.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:title" content="Socrates FAQ | Provider、路由模式、审稿边界与部署方式" />
+    <meta
+      property="og:description"
+      content="帮助团队快速理解 Socrates 的边界、能力和正确使用方式。"
+    />
+    <meta property="og:url" content="https://ixinxiang.xyz/zh/faq.html" />
+    <meta property="og:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="theme-color" content="#f4efe5" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Socrates 是通用 agent 框架吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "不是。Socrates 是一个面向专业内容生成工作流的 SDK 和 CLI，而不是通用 agent 编排框架。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Socrates 会自动上网核实事实吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "当前版本不会。review 阶段主要检查发布性风险，如重复、夸大和 AI 味表达，但不负责事实核查。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "什么时候值得用 full mode？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "当内容价值高、结构敏感，或者直接关系到定位、品牌叙事和系列规划时，就值得用 full mode。"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">S</span>
+          <span>Socrates</span>
+        </a>
+        <nav class="nav">
+          <a href="./product.html">产品</a>
+          <a href="./use-cases.html">应用场景</a>
+          <a href="./docs.html">文档</a>
+          <a href="./faq.html">FAQ</a>
+        </nav>
+        <div class="topbar-actions">
+          <div class="lang-switch" aria-label="Language switcher">
+            <a class="lang-link" href="../faq.html">EN</a>
+            <a class="lang-link lang-link-active" href="./faq.html">中文</a>
+          </div>
+          <a class="button button-ghost" href="https://github.com/miounet11/Socrates">GitHub</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="page-hero">
+          <p class="eyebrow">FAQ</p>
+          <h1>把边界说清楚，才能让用户知道这是什么，也知道它不是什么。</h1>
+          <p class="hero-text">
+            简单说，Socrates 给专业团队一个更像“内容系统”的生成方式。它不会替你做研究，
+            也不会替你承担编辑判断，但它能让标准、结构和审稿流程更明确。
+          </p>
+        </section>
+
+        <section class="section-tight faq-list">
+          <details open>
+            <summary>Socrates 是通用 agent 框架吗？</summary>
+            <p>
+              不是。它是一个面向专业内容系统的生成层。目标不是调度任意工具，而是把内容标准
+              在写正文之前先显式建立出来。
+            </p>
+          </details>
+          <details>
+            <summary>Socrates 会自动连接网络做事实核查吗？</summary>
+            <p>
+              当前版本不会。review 阶段主要处理发布性风险，比如重复、无支撑的确定性表达和
+              明显的 AI 味。事实核查仍然需要团队自行处理。
+            </p>
+          </details>
+          <details>
+            <summary>什么时候该用 direct、guided 或 full mode？</summary>
+            <p>
+              direct 适合摘要、改写等工具型任务；guided 适合博客、LinkedIn 和价值主张等
+              常规发布任务；full 适合品牌叙事、行业分析和内容日历等高价值内容。
+            </p>
+          </details>
+          <details>
+            <summary>为什么不直接把 prompt 写得更长一点？</summary>
+            <p>
+              因为再长的 prompt 也可能只是把标准藏在一堆说明里。Socrates 会把这些标准转成
+              可观察、可复用的类型化对象，便于团队验证和复盘。
+            </p>
+          </details>
+          <details>
+            <summary>当前支持哪些 provider？</summary>
+            <p>
+              当前版本默认提供 OpenAI-compatible chat completions 适配层。provider 边界
+              设计得比较窄，目的是方便后续继续接入新 provider。
+            </p>
+          </details>
+          <details>
+            <summary>这个网站本身适合直接对外访问吗？</summary>
+            <p>
+              现在可以。站点已经提供英文和简体中文双语版本，并且已经部署在带 HTTPS 的
+              Nginx 静态站点环境中，便于国内外用户直接访问。
+            </p>
+          </details>
+        </section>
+
+        <section class="section cta-band">
+          <div>
+            <p class="eyebrow">继续阅读</p>
+            <h2>从边界理解完，再去看怎么落地。</h2>
+            <p>
+              文档页会告诉你怎么安装和运行；应用场景页会帮助你判断，哪些任务真的值得走多阶段。
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="./docs.html">阅读文档</a>
+            <a class="button button-ghost" href="./use-cases.html">查看应用场景</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer footer-grid">
+        <div>
+          <strong>Socrates</strong>
+          <p>面向专业团队和 AI Builder 的策略先行内容生成工作流。</p>
+        </div>
+        <div class="footer-links">
+          <a href="./index.html">首页</a>
+          <a href="./product.html">产品</a>
+          <a href="./use-cases.html">应用场景</a>
+          <a href="./docs.html">文档</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

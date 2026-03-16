@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socrates 产品 | 工作流、架构与定位</title>
+    <meta
+      name="description"
+      content="深入理解 Socrates 的产品模型：frame、outline、draft、review，以及它为什么适合专业内容工作流。"
+    />
+    <link rel="canonical" href="https://ixinxiang.xyz/zh/product.html" />
+    <link rel="alternate" hreflang="en" href="https://ixinxiang.xyz/product.html" />
+    <link rel="alternate" hreflang="zh-CN" href="https://ixinxiang.xyz/zh/product.html" />
+    <link rel="alternate" hreflang="x-default" href="https://ixinxiang.xyz/product.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:title" content="Socrates 产品 | 工作流、架构与定位" />
+    <meta
+      property="og:description"
+      content="用更工程化的方式理解 Socrates：它是什么，它不是什么，以及它为什么适合专业内容系统。"
+    />
+    <meta property="og:url" content="https://ixinxiang.xyz/zh/product.html" />
+    <meta property="og:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="theme-color" content="#f4efe5" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">S</span>
+          <span>Socrates</span>
+        </a>
+        <nav class="nav">
+          <a href="./product.html">产品</a>
+          <a href="./use-cases.html">应用场景</a>
+          <a href="./docs.html">文档</a>
+          <a href="./faq.html">FAQ</a>
+        </nav>
+        <div class="topbar-actions">
+          <div class="lang-switch" aria-label="Language switcher">
+            <a class="lang-link" href="../product.html">EN</a>
+            <a class="lang-link lang-link-active" href="./product.html">中文</a>
+          </div>
+          <a class="button button-ghost" href="https://github.com/miounet11/Socrates">GitHub</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="page-hero">
+          <p class="eyebrow">产品</p>
+          <h1>先搞清楚 Socrates 是什么，再决定它值不值得接入。</h1>
+          <p class="hero-text">
+            Socrates 不是通用 agent runtime，也不是一个会自己到处搜资料的自动化框架。
+            它是一个专门面向专业内容系统的生成层，目的是让内容标准、结构和审稿阶段变得
+            显式、可复用、可验证。
+          </p>
+        </section>
+
+        <section class="section-tight">
+          <div class="comparison-grid">
+            <article class="page-card">
+              <h3>它是什么</h3>
+              <ul class="check-list">
+                <li>一个用于专业内容生成的 Python SDK 与 CLI</li>
+                <li>一个决定任务该走多深工作流的路由层</li>
+                <li>一套带类型约束的 frame、outline、draft、review 对象</li>
+                <li>一种减少“AI 工整文”输出的工程化方法</li>
+              </ul>
+            </article>
+            <article class="page-card">
+              <h3>它不是什么</h3>
+              <ul class="check-list">
+                <li>不是通用浏览器代理或多 agent 调度框架</li>
+                <li>不是事实核查系统，也不能替代编辑签发</li>
+                <li>不是把 prompt 写长一点就自动变专业的包装壳</li>
+                <li>不是“会写字”就能解决的内容问题的万能药</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">工作流模型</p>
+            <h2>真正重要的，是那些中间对象。</h2>
+            <p>
+              严肃的内容系统不该把标准藏在一段巨大 prompt 里。Socrates 会把这些标准拆成
+              清晰对象，让团队可以观察、测试、复用，也能只把需要暴露的部分交给下游系统。
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="page-card">
+              <h3>ContentRequest</h3>
+              <p>定义主题、受众、目标、平台、内容类型、约束、语气和补充材料。这是运行时 brief。</p>
+            </article>
+            <article class="page-card">
+              <h3>ContentFrame</h3>
+              <p>保存 audience pains、desired takeaway、persuasion triggers、credibility rules 和 core angle。</p>
+            </article>
+            <article class="page-card">
+              <h3>ContentOutline</h3>
+              <p>在结构敏感的任务里，加入 hooks、段落顺序、证据需求和 CTA 位置。</p>
+            </article>
+            <article class="page-card">
+              <h3>ContentDraft 与 ReviewReport</h3>
+              <p>把对外文案和内部审稿分开，这样成品保持干净，而系统仍然可以检查重复和弱论断。</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section-accent">
+          <div class="section-head">
+            <p class="eyebrow">为什么团队会用它</p>
+            <h2>专业内容的失败模式，从来都不只是语法问题。</h2>
+          </div>
+          <div class="narrative">
+            <p>
+              很多弱 AI 内容的问题不是句子不通顺，而是系统从未被迫决定：对当前受众，什么
+              才算可信？论证顺序应该怎么展开？哪些说法会显得像 AI 套话？哪些结论必须有例子
+              才站得住？
+            </p>
+            <p>
+              Socrates 的存在，就是把这些本来应该在脑子里想清楚的判断，提前变成明确的生成
+              标准。这样团队才能在保留产能的同时，不让整体质量持续滑向中庸。
+            </p>
+            <p>
+              它并不承诺神奇输出。它提供的是更清楚的约束关系，让内容系统和团队真正想执行的
+              编辑标准对齐。
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">接口形态</p>
+            <h2>接口小，但足够接进真实产品链路。</h2>
+          </div>
+          <div class="install-grid">
+            <article class="install-card">
+              <h3>SDK</h3>
+              <pre class="code-block"><code>client = Socrates.from_config()
+frame = client.frame(request)
+outline = client.outline(request, frame)
+draft = client.draft(request, frame=frame, outline=outline)
+review = client.review(request, draft, frame=frame)</code></pre>
+            </article>
+            <article class="install-card">
+              <h3>CLI</h3>
+              <pre class="code-block"><code>socrates presets
+socrates template blog_post --output request.yaml
+socrates frame request.yaml --json
+socrates generate request.yaml --mode guided
+socrates review draft.md --request request.yaml</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="section cta-band">
+          <div>
+            <p class="eyebrow">继续阅读</p>
+            <h2>再看一层：哪些内容类型最值得用它。</h2>
+            <p>
+              当内容质量需要 audience fit、可信度和结构意图时，Socrates 的价值会非常明显。
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="./use-cases.html">查看应用场景</a>
+            <a class="button button-ghost" href="./docs.html">阅读文档</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer footer-grid">
+        <div>
+          <strong>Socrates</strong>
+          <p>面向专业团队和 AI Builder 的策略先行内容生成工作流。</p>
+        </div>
+        <div class="footer-links">
+          <a href="./index.html">首页</a>
+          <a href="./use-cases.html">应用场景</a>
+          <a href="./docs.html">文档</a>
+          <a href="./faq.html">FAQ</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

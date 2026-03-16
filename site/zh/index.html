@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socrates | 面向专业团队的策略先行内容生成</title>
+    <meta
+      name="description"
+      content="Socrates 是一个 Python SDK 与 CLI，用于把内容生成拆成 frame、outline、draft 与 review 等阶段，帮助团队产出真正可发布、面向受众、结构清晰的专业内容。"
+    />
+    <meta
+      name="keywords"
+      content="AI 内容生成, 中文内容营销, B2B SaaS 内容, 提示工程, 内容工作流, 内容策略, 品牌叙事"
+    />
+    <link rel="canonical" href="https://ixinxiang.xyz/zh/" />
+    <link rel="alternate" hreflang="en" href="https://ixinxiang.xyz/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://ixinxiang.xyz/zh/" />
+    <link rel="alternate" hreflang="x-default" href="https://ixinxiang.xyz/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:title" content="Socrates | 面向专业团队的策略先行内容生成" />
+    <meta
+      property="og:description"
+      content="把一次性 prompt 变成专业内容流程：frame、outline、draft、review。"
+    />
+    <meta property="og:url" content="https://ixinxiang.xyz/zh/" />
+    <meta property="og:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Socrates | 面向专业团队的策略先行内容生成" />
+    <meta
+      name="twitter:description"
+      content="适合 AI 产品团队、内容运营团队和技术营销团队的专业内容生成工作流。"
+    />
+    <meta name="twitter:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="theme-color" content="#f4efe5" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="../manifest.webmanifest" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Socrates",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Cross-platform",
+        "url": "https://ixinxiang.xyz/zh/",
+        "description": "一个用于策略先行内容生成的 Python SDK 与 CLI，可将内容工作流拆分为 frame、outline、draft 和 review 阶段。",
+        "softwareVersion": "0.1.3",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "miounet11"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">S</span>
+          <span>Socrates</span>
+        </a>
+        <nav class="nav">
+          <a href="./product.html">产品</a>
+          <a href="./use-cases.html">应用场景</a>
+          <a href="./docs.html">文档</a>
+          <a href="./faq.html">FAQ</a>
+          <a href="#playground">规划器</a>
+        </nav>
+        <div class="topbar-actions">
+          <div class="lang-switch" aria-label="Language switcher">
+            <a class="lang-link" href="../index.html">EN</a>
+            <a class="lang-link lang-link-active" href="./index.html">中文</a>
+          </div>
+          <a class="button button-ghost" href="https://github.com/miounet11/Socrates">GitHub</a>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">面向专业团队的内容系统，而不是一次性 prompt demo</p>
+            <h1>让 AI 内容从“能生成”走到“能发布”。</h1>
+            <p class="hero-text">
+              Socrates 是一个策略先行的内容生成引擎，专门面向真正关心输出质量的团队。它
+              不会一上来就直接写正文，而是先生成 <strong>frame</strong>，再决定是否需要
+              <strong>outline</strong>，然后产出 <strong>draft</strong>，最后做一轮
+              <strong>review</strong>。
+            </p>
+            <div class="hero-actions">
+              <a class="button" href="./docs.html">阅读文档</a>
+              <a class="button button-ghost" href="#playground">生成 starter request</a>
+            </div>
+            <ul class="hero-proof">
+              <li>Python SDK + CLI</li>
+              <li>适合 AI 产品团队、内容运营团队和技术营销团队</li>
+              <li>支持博客、价值主张、LinkedIn 长帖、行业分析和内容日历</li>
+            </ul>
+          </div>
+
+          <div class="hero-panel">
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span></span><span></span><span></span>
+              </div>
+              <pre><code>$ socrates template blog_post --output request.yaml
+$ socrates generate request.yaml --mode guided
+
+# 为什么 AI 营销内容常常输在第一段
+
+很多团队一开始就先解释模型能力，却没有先说明买家真正想消除的业务摩擦。
+Socrates 会先建立标准，再写正文，所以内容会有角度、有结构，也更接近可发布成品。</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="kpi-strip" aria-label="定位摘要">
+          <article class="stat-card">
+            <span class="stat-label">它替代什么</span>
+            <strong>高价值内容上的一次性单步 prompt</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">它补上什么</span>
+            <strong>明确标准、结构中间件，以及可审阅的阶段产物</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">它服务谁</span>
+            <strong>AI 产品团队、内容操盘手、技术营销与品牌团队</strong>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">为什么需要它</p>
+            <h2>很多 AI 内容在模型写下第一句话前就已经失败了。</h2>
+            <p>
+              问题往往不在语法，而在标准缺失。团队明明知道受众是谁、买家在意什么、哪些
+              论点必须建立可信度、哪些表达会显得像 AI 套话，但普通 prompt 往往把这些都
+              压成一段模糊说明，最后只能靠模型猜。
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="page-card">
+              <h3>先建立判据</h3>
+              <p>
+                先生成可复用的内容 frame，把 audience pains、persuasion triggers、
+                credibility requirements、tone rules 和 anti-patterns 明确下来。
+              </p>
+            </article>
+            <article class="page-card">
+              <h3>再决定结构</h3>
+              <p>
+                不是所有任务都值得走多阶段。Socrates 会根据内容类型路由，简单任务保持快，
+                高价值任务才引入更深的 orchestration。
+              </p>
+            </article>
+            <article class="page-card">
+              <h3>带约束写正文</h3>
+              <p>
+                draft 不是从零瞎猜，而是围绕 frame 和可选 outline 展开，所以更不容易滑向
+                工整但空洞的 AI 套路文。
+              </p>
+            </article>
+            <article class="page-card">
+              <h3>发布前审稿</h3>
+              <p>
+                review 阶段会检查重复、夸大、无支撑判断，以及明显的 AI 味表达，帮助团队
+                在真正发布前先做一轮内容卫生检查。
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section id="modes" class="section section-accent">
+          <div class="section-head">
+            <p class="eyebrow">路由模型</p>
+            <h2>内容深度应该是产品决策，而不是默认动作。</h2>
+            <p>
+              Socrates 会按 `content_type` 路由。轻量任务保持直接，高价值内容才进入多阶段
+              流程，这样既能保留效率，也能把更贵的生成深度留给真正值得的内容。
+            </p>
+          </div>
+          <div class="comparison-grid">
+            <article class="mode-card">
+              <span class="mode-badge">Direct</span>
+              <h3>面向工具型任务的一步生成</h3>
+              <p>摘要、改写、标题、hashtags、短 CTA 变体，以及简单格式转换。</p>
+              <code>summary · rewrite · translation · hashtags</code>
+            </article>
+            <article class="mode-card">
+              <span class="mode-badge">Guided</span>
+              <h3>普通发布任务用 frame + draft</h3>
+              <p>博客、LinkedIn 长帖、价值主张、落地页 section、销售邮件等。</p>
+              <code>blog_post · linkedin_long_post · value_prop</code>
+            </article>
+            <article class="mode-card">
+              <span class="mode-badge">Full</span>
+              <h3>高价值内容用完整多阶段流程</h3>
+              <p>品牌叙事、行业分析、内容日历、旗舰长文等。</p>
+              <code>brand_narrative · industry_analysis · content_calendar</code>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">工作流</p>
+            <h2>把专业内容流程真正表达成软件接口。</h2>
+          </div>
+          <div class="timeline-grid">
+            <article class="timeline-card">
+              <span>01</span>
+              <h3>Request</h3>
+              <p>定义主题、受众、目标、平台、内容类型、约束条件和语气要求。</p>
+            </article>
+            <article class="timeline-card">
+              <span>02</span>
+              <h3>Frame</h3>
+              <p>先确定什么才算有说服力、可信、具体，以及哪些表达必须避免。</p>
+            </article>
+            <article class="timeline-card">
+              <span>03</span>
+              <h3>Outline</h3>
+              <p>在需要结构设计的任务里，把 frame 转成段落顺序、节奏和证据槽位。</p>
+            </article>
+            <article class="timeline-card">
+              <span>04</span>
+              <h3>Draft</h3>
+              <p>输出对外内容，同时尽量保持受众匹配、结构完整和语言克制。</p>
+            </article>
+            <article class="timeline-card">
+              <span>05</span>
+              <h3>Review</h3>
+              <p>在交付前找出重复、夸大、AI 味和可发布性问题。</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="playground" class="section">
+          <div class="section-head">
+            <p class="eyebrow">交互式规划器</p>
+            <h2>先选预设，再把 brief 调成适合你的版本。</h2>
+            <p>
+              这个规划器是静态的，不会直接调用模型。它的作用是帮助团队理解预设、路由规则
+              和 request 结构，然后生成一份可以直接交给 CLI 使用的 YAML。
+            </p>
+          </div>
+
+          <div class="planner">
+            <div class="planner-controls">
+              <label for="preset">预设</label>
+              <select id="preset">
+                <option value="blog_post">B2B 博客长文</option>
+                <option value="linkedin_long_post">LinkedIn 长帖</option>
+                <option value="value_prop">落地页价值主张</option>
+                <option value="industry_analysis">行业分析</option>
+                <option value="content_calendar">30 天内容日历</option>
+                <option value="brand_narrative">品牌叙事</option>
+              </select>
+
+              <label for="topic">主题</label>
+              <input id="topic" type="text" value="为什么 AI 产品营销一上来就讲能力，往往会让内容失去说服力" />
+
+              <label for="audience">受众</label>
+              <input id="audience" type="text" value="AI 创业公司的产品营销负责人" />
+
+              <label for="goal">目标</label>
+              <input id="goal" type="text" value="产出一篇可直接发布、观点鲜明的博客初稿" />
+            </div>
+
+            <div class="planner-output">
+              <div class="planner-meta">
+                <div>
+                  <span class="planner-label">推荐模式</span>
+                  <strong id="mode-output">guided</strong>
+                </div>
+                <button class="button button-ghost button-small" id="copy-command" type="button">
+                  复制 CLI 命令
+                </button>
+              </div>
+              <pre id="yaml-output" class="code-block"></pre>
+              <pre id="command-output" class="code-block command-block"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">适用场景</p>
+            <h2>适合那些不能只看“写得顺不顺”，而要看“能不能发”的内容。</h2>
+          </div>
+          <div class="example-grid">
+            <article>
+              <h3>B2B SaaS 博客</h3>
+              <p>在写长文前先明确主张、论证顺序和 CTA，避免落入泛化内容。</p>
+            </article>
+            <article>
+              <h3>LinkedIn 创始人长帖</h3>
+              <p>让开头更有钩子、段落更有节奏，结尾更符合目标读者反应。</p>
+            </article>
+            <article>
+              <h3>价值主张与落地页</h3>
+              <p>把产品能力翻译成买家痛点、信任信号和更合理的信息顺序。</p>
+            </article>
+            <article>
+              <h3>品牌叙事与类别观点</h3>
+              <p>当内容本身就是定位的一部分时，full mode 会更有价值。</p>
+            </article>
+          </div>
+          <p class="section-link">
+            <a href="./use-cases.html">查看完整应用场景</a>
+          </p>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">完整站点</p>
+            <h2>让用户不用猜，就能理解产品、场景、文档和边界。</h2>
+          </div>
+          <div class="resource-grid">
+            <a class="resource-card" href="./product.html">
+              <h3>产品</h3>
+              <p>了解工作流、架构、定位，以及为什么策略先行生成值得做成产品。</p>
+            </a>
+            <a class="resource-card" href="./use-cases.html">
+              <h3>应用场景</h3>
+              <p>看清 direct、guided、full 三种模式分别该用在哪些内容任务里。</p>
+            </a>
+            <a class="resource-card" href="./docs.html">
+              <h3>文档</h3>
+              <p>从安装、预设、模板到 CLI 运行路径，一次看全。</p>
+            </a>
+            <a class="resource-card" href="./faq.html">
+              <h3>FAQ</h3>
+              <p>快速理解支持的 provider、review 边界、路由逻辑，以及部署方式。</p>
+            </a>
+          </div>
+        </section>
+
+        <section class="section cta-band">
+          <div>
+            <p class="eyebrow">开始使用</p>
+            <h2>当内容质量需要明确标准时，就应该让系统先建立标准。</h2>
+            <p>
+              现在站点已经支持英文和简体中文。无论是国内团队还是国际团队，都可以直接理解
+              Socrates 的产品定位、工作流和落地方式。
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="./docs.html">打开文档</a>
+            <a class="button button-ghost" href="https://github.com/miounet11/Socrates">
+              查看仓库
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer footer-grid">
+        <div>
+          <strong>Socrates</strong>
+          <p>面向专业团队和 AI Builder 的策略先行内容生成工作流。</p>
+        </div>
+        <div class="footer-links">
+          <a href="./product.html">产品</a>
+          <a href="./use-cases.html">应用场景</a>
+          <a href="./docs.html">文档</a>
+          <a href="./faq.html">FAQ</a>
+          <a href="../sitemap.xml">Sitemap</a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="../app.js"></script>
+  </body>
+</html>

@@ -1,33 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Socrates Docs | Install, Presets, Templates, and CLI Commands</title>
+    <title>Socrates 文档 | 安装、预设、模板与 CLI 命令</title>
     <meta
       name="description"
-      content="Socrates documentation: installation, configuration, built-in presets, request templates, CLI commands, and the core object model."
+      content="Socrates 中文文档：安装方式、内置 presets、request 模板、CLI 命令以及核心对象模型。"
     />
-    <link rel="canonical" href="https://ixinxiang.xyz/docs.html" />
+    <link rel="canonical" href="https://ixinxiang.xyz/zh/docs.html" />
     <link rel="alternate" hreflang="en" href="https://ixinxiang.xyz/docs.html" />
     <link rel="alternate" hreflang="zh-CN" href="https://ixinxiang.xyz/zh/docs.html" />
     <link rel="alternate" hreflang="x-default" href="https://ixinxiang.xyz/docs.html" />
     <meta property="og:type" content="article" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="zh_CN" />
-    <meta
-      property="og:title"
-      content="Socrates Docs | Install, Presets, Templates, and CLI Commands"
-    />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:title" content="Socrates 文档 | 安装、预设、模板与 CLI 命令" />
     <meta
       property="og:description"
-      content="The practical quickstart and command reference for Socrates."
+      content="最实用的上手路径：安装、查看预设、生成 request、运行 frame 和 draft。"
     />
-    <meta property="og:url" content="https://ixinxiang.xyz/docs.html" />
+    <meta property="og:url" content="https://ixinxiang.xyz/zh/docs.html" />
     <meta property="og:image" content="https://ixinxiang.xyz/og.svg" />
     <meta name="theme-color" content="#f4efe5" />
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
     <div class="page-shell">
@@ -37,15 +34,15 @@
           <span>Socrates</span>
         </a>
         <nav class="nav">
-          <a href="./product.html">Product</a>
-          <a href="./use-cases.html">Use Cases</a>
-          <a href="./docs.html">Docs</a>
+          <a href="./product.html">产品</a>
+          <a href="./use-cases.html">应用场景</a>
+          <a href="./docs.html">文档</a>
           <a href="./faq.html">FAQ</a>
         </nav>
         <div class="topbar-actions">
           <div class="lang-switch" aria-label="Language switcher">
-            <a class="lang-link lang-link-active" href="./docs.html">EN</a>
-            <a class="lang-link" href="./zh/docs.html">中文</a>
+            <a class="lang-link" href="../docs.html">EN</a>
+            <a class="lang-link lang-link-active" href="./docs.html">中文</a>
           </div>
           <a class="button button-ghost" href="https://github.com/miounet11/Socrates">GitHub</a>
         </div>
@@ -53,24 +50,24 @@
 
       <main>
         <section class="page-hero">
-          <p class="eyebrow">Docs</p>
-          <h1>Install fast, choose a preset, and generate from a proper brief.</h1>
+          <p class="eyebrow">文档</p>
+          <h1>最快的评估方式，是先安装，再按 preset 跑一遍真正的 brief。</h1>
           <p class="hero-text">
-            The fastest way to evaluate Socrates is to install the package, inspect built-in
-            presets, generate a starter request file, and run a guided draft.
+            判断 Socrates 是否适合你，最有效的路径不是看概念，而是实际安装、查看内置预设、
+            生成 request.yaml，然后跑一版 guided draft。
           </p>
         </section>
 
         <section class="section-tight">
           <div class="install-grid">
             <article class="install-card">
-              <h3>Install</h3>
+              <h3>安装</h3>
               <pre class="code-block"><code>uv tool install git+https://github.com/miounet11/Socrates.git
 socrates init
 export OPENAI_API_KEY=your-key</code></pre>
             </article>
             <article class="install-card">
-              <h3>Immediate workflow</h3>
+              <h3>最短路径</h3>
               <pre class="code-block"><code>socrates presets
 socrates template blog_post --output request.yaml
 socrates generate request.yaml --mode guided</code></pre>
@@ -80,41 +77,41 @@ socrates generate request.yaml --mode guided</code></pre>
 
         <section class="section">
           <div class="section-head">
-            <p class="eyebrow">CLI reference</p>
-            <h2>The commands that matter most.</h2>
+            <p class="eyebrow">CLI 参考</p>
+            <h2>最值得先掌握的几个命令。</h2>
           </div>
           <div class="resource-grid">
             <article class="resource-card">
               <h3>`socrates presets`</h3>
-              <p>List built-in content presets and their recommended modes.</p>
+              <p>列出内置内容预设以及它们的推荐模式。</p>
             </article>
             <article class="resource-card">
               <h3>`socrates template PRESET`</h3>
-              <p>Generate a starter YAML request that matches a built-in preset.</p>
+              <p>根据内置 preset 生成一份 starter YAML request。</p>
             </article>
             <article class="resource-card">
               <h3>`socrates frame request.yaml`</h3>
-              <p>Generate only the strategy/rubric layer when you want to inspect it directly.</p>
+              <p>只生成策略层 / rubric 层，便于直接检查 frame 是否靠谱。</p>
             </article>
             <article class="resource-card">
               <h3>`socrates generate request.yaml`</h3>
-              <p>Generate content with `auto`, `direct`, `guided`, or `full` mode.</p>
+              <p>按 `auto`、`direct`、`guided` 或 `full` 模式生成内容。</p>
             </article>
             <article class="resource-card">
               <h3>`socrates review draft.md --request request.yaml`</h3>
-              <p>Run the review stage against an existing markdown draft.</p>
+              <p>对现有 markdown 草稿做一轮 review，检查发布前风险。</p>
             </article>
             <article class="resource-card">
               <h3>`socrates doctor`</h3>
-              <p>Inspect local provider configuration and confirm credentials are present.</p>
+              <p>检查 provider 配置是否可用，以及关键凭证是否到位。</p>
             </article>
           </div>
         </section>
 
         <section class="section section-accent">
           <div class="section-head">
-            <p class="eyebrow">Starter presets</p>
-            <h2>The built-in presets model the common professional workflows.</h2>
+            <p class="eyebrow">内置预设</p>
+            <h2>这些 preset 对应的是常见而且真实的专业内容工作流。</h2>
           </div>
           <div class="table-wrap">
             <table>
@@ -123,7 +120,7 @@ socrates generate request.yaml --mode guided</code></pre>
                   <th>Preset</th>
                   <th>Mode</th>
                   <th>Platform</th>
-                  <th>Use</th>
+                  <th>用途</th>
                 </tr>
               </thead>
               <tbody>
@@ -131,37 +128,37 @@ socrates generate request.yaml --mode guided</code></pre>
                   <td>blog_post</td>
                   <td>guided</td>
                   <td>blog</td>
-                  <td>Publishable long-form articles with clearer argument structure</td>
+                  <td>适合带明确论点和更清晰结构的博客长文</td>
                 </tr>
                 <tr>
                   <td>linkedin_long_post</td>
                   <td>guided</td>
                   <td>linkedin</td>
-                  <td>Operator-style posts with stronger hooks and pacing</td>
+                  <td>适合节奏更强、开头更有钩子的长帖</td>
                 </tr>
                 <tr>
                   <td>value_prop</td>
                   <td>guided</td>
                   <td>web</td>
-                  <td>Landing-page and positioning copy</td>
+                  <td>适合首页 hero、落地页和定位文案</td>
                 </tr>
                 <tr>
                   <td>industry_analysis</td>
                   <td>full</td>
                   <td>blog</td>
-                  <td>Strategic analysis with stronger structure and review</td>
+                  <td>适合结构更重、审稿要求更高的行业分析</td>
                 </tr>
                 <tr>
                   <td>content_calendar</td>
                   <td>full</td>
                   <td>multi-platform</td>
-                  <td>Editorial planning across channels</td>
+                  <td>适合跨渠道的编辑规划与系列内容设计</td>
                 </tr>
                 <tr>
                   <td>brand_narrative</td>
                   <td>full</td>
                   <td>web</td>
-                  <td>High-stakes positioning and narrative work</td>
+                  <td>适合高价值定位与品牌叙事内容</td>
                 </tr>
               </tbody>
             </table>
@@ -170,42 +167,42 @@ socrates generate request.yaml --mode guided</code></pre>
 
         <section class="section">
           <div class="section-head">
-            <p class="eyebrow">Object model</p>
-            <h2>The product surface is intentionally small.</h2>
+            <p class="eyebrow">对象模型</p>
+            <h2>产品表面刻意保持小而清晰。</h2>
           </div>
           <div class="feature-grid">
             <article class="page-card">
               <h3>ContentRequest</h3>
-              <p>The brief. Topic, audience, goal, platform, type, constraints, and tone notes.</p>
+              <p>运行 brief。包含主题、受众、目标、平台、类型、约束和 tone notes。</p>
             </article>
             <article class="page-card">
               <h3>ContentFrame</h3>
-              <p>The standard. Pain, persuasion, credibility, tone, anti-patterns, and angle.</p>
+              <p>内容标准。包含痛点、说服点、可信度要求、语气规则、反模式和核心角度。</p>
             </article>
             <article class="page-card">
               <h3>ContentOutline</h3>
-              <p>The structure. Hooks, section order, evidence needs, and CTA placement.</p>
+              <p>内容结构。定义 opening hook、章节顺序、证据需求和 CTA 位置。</p>
             </article>
             <article class="page-card">
-              <h3>ContentDraft and ReviewReport</h3>
-              <p>The deliverable and the editorial audit that keeps the work publishable.</p>
+              <h3>ContentDraft 与 ReviewReport</h3>
+              <p>一个是对外文案，一个是内部审稿结果，两者分离能让交付更干净。</p>
             </article>
           </div>
         </section>
 
         <section class="section cta-band">
           <div>
-            <p class="eyebrow">Next step</p>
-            <h2>Use the planner or open the repo.</h2>
+            <p class="eyebrow">下一步</p>
+            <h2>去跑一次 planner，或者直接打开仓库。</h2>
             <p>
-              The website explains the model, but the fastest evaluation path is still: generate a
-              template, run a preset, and inspect the resulting frame and draft.
+              网站负责把模型讲清楚，但真正的评估动作仍然是：生成模板、跑 preset，然后检查
+              frame 和 draft 是否符合你自己的编辑标准。
             </p>
           </div>
           <div class="hero-actions">
-            <a class="button" href="./index.html#playground">Open planner</a>
+            <a class="button" href="./index.html#playground">打开规划器</a>
             <a class="button button-ghost" href="https://github.com/miounet11/Socrates">
-              View repository
+              查看仓库
             </a>
           </div>
         </section>
@@ -214,12 +211,12 @@ socrates generate request.yaml --mode guided</code></pre>
       <footer class="footer footer-grid">
         <div>
           <strong>Socrates</strong>
-          <p>Strategy-first content generation for professional teams and AI builders.</p>
+          <p>面向专业团队和 AI Builder 的策略先行内容生成工作流。</p>
         </div>
         <div class="footer-links">
-          <a href="./index.html">Home</a>
-          <a href="./product.html">Product</a>
-          <a href="./use-cases.html">Use Cases</a>
+          <a href="./index.html">首页</a>
+          <a href="./product.html">产品</a>
+          <a href="./use-cases.html">应用场景</a>
           <a href="./faq.html">FAQ</a>
         </div>
       </footer>
