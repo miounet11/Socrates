@@ -1,0 +1,20 @@
+topic: "Why B2B onboarding content underperforms even when the product is strong"
+audience: "B2B SaaS product marketers"
+goal: "Produce a publishable blog post draft"
+platform: "blog"
+content_type: "blog_post"
+constraints:
+  - "Avoid empty thought leadership phrasing"
+  - "Use concrete examples instead of abstractions"
+voice_notes:
+  - "Sharp"
+  - "Credible"
+  - "Specific"
+keywords:
+  - "onboarding"
+  - "activation"
+  - "B2B SaaS"
+length_hint: "1200-1500 words"
+include_cta: true
+cta_goal: "Invite readers to book a messaging audit"
+

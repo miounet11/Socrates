@@ -1,0 +1,18 @@
+topic: "Most AI product positioning fails because it describes capability instead of business friction"
+audience: "Founders and product marketers at AI startups"
+goal: "Produce a publishable LinkedIn long post"
+platform: "linkedin"
+content_type: "linkedin_long_post"
+constraints:
+  - "Keep paragraphs short"
+  - "Lead with a strong hook"
+voice_notes:
+  - "Operator tone"
+  - "Clear point of view"
+keywords:
+  - "AI positioning"
+  - "go-to-market"
+length_hint: "700-900 words"
+include_cta: true
+cta_goal: "Start a conversation in comments or DMs"
+

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socrates | Rubric-Guided Content Generation</title>
+    <meta
+      name="description"
+      content="Socrates helps teams generate publishable content with strategy-first workflows: frame, outline, draft, review."
+    />
+    <meta
+      name="keywords"
+      content="AI content generation, content strategy, prompt engineering, B2B marketing, structured generation, SEO content"
+    />
+    <link rel="canonical" href="https://ixinxiang.xyz/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Socrates | Rubric-Guided Content Generation" />
+    <meta
+      property="og:description"
+      content="Build publishable content with rubrics, not vibes. Socrates turns one-shot prompting into a structured content pipeline."
+    />
+    <meta property="og:url" content="https://ixinxiang.xyz/" />
+    <meta property="og:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Socrates | Rubric-Guided Content Generation" />
+    <meta
+      name="twitter:description"
+      content="Frame, outline, draft, review. A Python SDK and CLI for publishable content systems."
+    />
+    <meta name="twitter:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="theme-color" content="#f4efe5" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Socrates",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Cross-platform",
+        "url": "https://ixinxiang.xyz/",
+        "description": "A Python SDK and CLI for rubric-guided content generation with frame, outline, draft, and review stages.",
+        "softwareVersion": "0.1.0",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "creator": {
+          "@type": "Person",
+          "name": "miounet11"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top">
+          <span class="brand-mark">S</span>
+          <span>Socrates</span>
+        </a>
+        <nav class="nav">
+          <a href="#modes">Modes</a>
+          <a href="#playground">Playground</a>
+          <a href="#examples">Examples</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="button button-ghost" href="https://github.com/miounet11/Socrates">GitHub</a>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Structured generation for content systems</p>
+            <h1>Build publishable content with rubrics, not vibes.</h1>
+            <p class="hero-text">
+              Socrates turns one-shot prompting into a strategy-first workflow:
+              <strong>frame</strong>, <strong>outline</strong>, <strong>draft</strong>,
+              <strong>review</strong>. Use it from Python or the CLI when the content actually
+              matters.
+            </p>
+            <div class="hero-actions">
+              <a class="button" href="#playground">Try the planner</a>
+              <a class="button button-ghost" href="#install">See install</a>
+            </div>
+            <ul class="hero-proof">
+              <li>Python SDK + CLI</li>
+              <li>OpenAI-compatible provider support</li>
+              <li>Built for blogs, value props, LinkedIn, calendars</li>
+            </ul>
+          </div>
+
+          <div class="hero-panel">
+            <div class="terminal-window">
+              <div class="terminal-header">
+                <span></span><span></span><span></span>
+              </div>
+              <pre><code>$ socrates generate examples/blog_post.yaml --mode guided
+
+# AI product messaging fails when it skips the buyer problem
+
+Most teams open with model capability. Buyers care about operational friction.
+Socrates builds the frame first, so the draft arrives with a point of view,
+structure, and a clear CTA instead of bland AI filler.</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="signal-strip" aria-label="Core benefits">
+          <article>
+            <h2>Audience-aware</h2>
+            <p>Rubrics force the model to anchor on buyer pain, trust signals, and anti-patterns.</p>
+          </article>
+          <article>
+            <h2>Publishable</h2>
+            <p>Long-form and flagship content can move through frame, outline, draft, and review.</p>
+          </article>
+          <article>
+            <h2>Reproducible</h2>
+            <p>YAML requests and typed objects make the workflow stable enough for real systems.</p>
+          </article>
+        </section>
+
+        <section id="modes" class="section">
+          <div class="section-head">
+            <p class="eyebrow">Routing model</p>
+            <h2>Use depth where it pays for itself.</h2>
+          </div>
+          <div class="mode-grid">
+            <article class="mode-card">
+              <span class="mode-badge">Direct</span>
+              <h3>One pass for lightweight work</h3>
+              <p>Summaries, rewrites, translations, hashtags, CTA touch-ups.</p>
+              <code>summary · rewrite · translation</code>
+            </article>
+            <article class="mode-card">
+              <span class="mode-badge">Guided</span>
+              <h3>Frame before draft</h3>
+              <p>Blog posts, LinkedIn long posts, landing page value props.</p>
+              <code>blog_post · linkedin_long_post · value_prop</code>
+            </article>
+            <article class="mode-card">
+              <span class="mode-badge">Full</span>
+              <h3>Frame, outline, draft, review</h3>
+              <p>Brand narratives, content calendars, strategic analysis, flagship articles.</p>
+              <code>content_calendar · industry_analysis · brand_narrative</code>
+            </article>
+          </div>
+        </section>
+
+        <section id="playground" class="section section-accent">
+          <div class="section-head">
+            <p class="eyebrow">Interactive planner</p>
+            <h2>Pick a preset and generate a ready-to-run command.</h2>
+            <p>
+              This is a static planner, not a hosted model call. It helps users understand the
+              routing model, copy request YAML, and get started fast.
+            </p>
+          </div>
+
+          <div class="planner">
+            <div class="planner-controls">
+              <label for="preset">Preset</label>
+              <select id="preset">
+                <option value="blog_post">B2B blog post</option>
+                <option value="linkedin_long_post">LinkedIn long post</option>
+                <option value="value_prop">Landing page value prop</option>
+                <option value="content_calendar">30-day content calendar</option>
+              </select>
+
+              <label for="topic">Topic</label>
+              <input id="topic" type="text" value="Why AI product messaging fails when it starts with capability" />
+
+              <label for="audience">Audience</label>
+              <input id="audience" type="text" value="Product marketers at AI startups" />
+
+              <label for="goal">Goal</label>
+              <input id="goal" type="text" value="Create a publishable draft with a clear point of view" />
+            </div>
+
+            <div class="planner-output">
+              <div class="planner-meta">
+                <div>
+                  <span class="planner-label">Auto-routed mode</span>
+                  <strong id="mode-output">guided</strong>
+                </div>
+                <button class="button button-ghost button-small" id="copy-command" type="button">
+                  Copy CLI command
+                </button>
+              </div>
+              <pre id="yaml-output" class="code-block"></pre>
+              <pre id="command-output" class="code-block command-block"></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="install" class="section">
+          <div class="section-head">
+            <p class="eyebrow">Install</p>
+            <h2>Start with the CLI. Embed with Python when ready.</h2>
+          </div>
+          <div class="install-grid">
+            <article class="install-card">
+              <h3>CLI quickstart</h3>
+              <pre class="code-block"><code>uv pip install socrates-ai
+socrates init
+export OPENAI_API_KEY=your-key
+socrates generate examples/blog_post.yaml --mode guided</code></pre>
+            </article>
+            <article class="install-card">
+              <h3>Python quickstart</h3>
+              <pre class="code-block"><code>from socrates import ContentRequest, Socrates
+
+client = Socrates.from_config()
+request = ContentRequest(
+    topic="Why onboarding content underperforms",
+    audience="B2B SaaS product marketers",
+    goal="Generate a publishable blog post",
+    platform="blog",
+    content_type="blog_post",
+)
+result = client.generate(request, mode="guided")</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section id="examples" class="section">
+          <div class="section-head">
+            <p class="eyebrow">Where it fits</p>
+            <h2>Best when the content needs standards, not just text.</h2>
+          </div>
+          <div class="example-grid">
+            <article>
+              <h3>B2B SaaS blog posts</h3>
+              <p>Turn a topic into a differentiated thesis, evidence plan, and draft.</p>
+            </article>
+            <article>
+              <h3>LinkedIn long posts</h3>
+              <p>Keep the hook strong, the pacing tight, and the CTA aligned to the audience.</p>
+            </article>
+            <article>
+              <h3>Value proposition copy</h3>
+              <p>Translate features into buyer-relevant pain, credibility, and messaging order.</p>
+            </article>
+            <article>
+              <h3>Content calendars</h3>
+              <p>Generate a differentiated series instead of 30 variants of the same hollow topic.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="faq" class="section">
+          <div class="section-head">
+            <p class="eyebrow">FAQ</p>
+            <h2>Questions users usually ask before adopting it.</h2>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>Is Socrates a general agent framework?</summary>
+              <p>No. It is a structured generation layer for content systems, not a multi-agent platform.</p>
+            </details>
+            <details>
+              <summary>Does it crawl the web or verify claims?</summary>
+              <p>Not in v0.1. The review stage checks publishability signals and anti-patterns, not factual truth.</p>
+            </details>
+            <details>
+              <summary>Can I use it with simple rewrite tasks?</summary>
+              <p>Yes. Lightweight requests can route to direct mode so you do not pay the multi-stage cost unnecessarily.</p>
+            </details>
+            <details>
+              <summary>Why not just write a bigger prompt?</summary>
+              <p>Because standards buried in prose are easy for models to blur. Typed frames and outlines are harder to ignore.</p>
+            </details>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <strong>Socrates</strong>
+          <p>Rubric-guided content generation for real publishing workflows.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/miounet11/Socrates">GitHub</a>
+          <a href="/sitemap.xml">Sitemap</a>
+          <a href="/robots.txt">Robots</a>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
+

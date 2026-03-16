@@ -1,0 +1,18 @@
+topic: "A workflow copilot for RevOps teams"
+audience: "Revenue operations leaders evaluating automation platforms"
+goal: "Produce a value proposition section for a landing page"
+platform: "web"
+content_type: "value_prop"
+constraints:
+  - "Avoid generic efficiency claims"
+voice_notes:
+  - "Confident"
+  - "Buyer-aware"
+keywords:
+  - "RevOps"
+  - "workflow copilot"
+  - "pipeline hygiene"
+length_hint: "Short landing page section"
+include_cta: true
+cta_goal: "Drive demo requests"
+

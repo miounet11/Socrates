@@ -1,0 +1,19 @@
+topic: "A 30-day content calendar for a compliance automation platform"
+audience: "Security and compliance leaders at mid-market companies"
+goal: "Generate a 30-day content calendar with differentiated angles"
+platform: "multi-platform"
+content_type: "content_calendar"
+constraints:
+  - "Balance educational and commercial intent"
+  - "Avoid repeating the same angle"
+voice_notes:
+  - "Expert"
+  - "Practical"
+keywords:
+  - "compliance automation"
+  - "security"
+  - "audit readiness"
+length_hint: "30 daily entries"
+include_cta: true
+cta_goal: "Drive demo and newsletter signups"
+
