@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socrates Product | Workflow, Architecture, and Positioning</title>
+    <meta
+      name="description"
+      content="Understand the Socrates product model: frame, outline, draft, review. See how the SDK and CLI fit into professional content workflows."
+    />
+    <link rel="canonical" href="https://ixinxiang.xyz/product.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Socrates Product | Workflow, Architecture, and Positioning" />
+    <meta
+      property="og:description"
+      content="A deeper look at Socrates as a strategy-first content engine for professional teams."
+    />
+    <meta property="og:url" content="https://ixinxiang.xyz/product.html" />
+    <meta property="og:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="theme-color" content="#f4efe5" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">S</span>
+          <span>Socrates</span>
+        </a>
+        <nav class="nav">
+          <a href="./product.html">Product</a>
+          <a href="./use-cases.html">Use Cases</a>
+          <a href="./docs.html">Docs</a>
+          <a href="./faq.html">FAQ</a>
+        </nav>
+        <a class="button button-ghost" href="https://github.com/miounet11/Socrates">GitHub</a>
+      </header>
+
+      <main>
+        <section class="page-hero">
+          <p class="eyebrow">Product</p>
+          <h1>What Socrates actually is, and what it is not.</h1>
+          <p class="hero-text">
+            Socrates is not a generic agent runtime. It is a focused generation layer for teams
+            that need content systems to produce work with explicit standards, reusable structure,
+            and reviewable intermediate artifacts.
+          </p>
+        </section>
+
+        <section class="section-tight">
+          <div class="comparison-grid">
+            <article class="page-card">
+              <h3>What it is</h3>
+              <ul class="check-list">
+                <li>A Python SDK and CLI for professional content generation</li>
+                <li>A routing layer that decides how much generation depth a task deserves</li>
+                <li>A typed workflow with frame, outline, draft, and review objects</li>
+                <li>A practical way to reduce generic, AI-shaped content output</li>
+              </ul>
+            </article>
+            <article class="page-card">
+              <h3>What it is not</h3>
+              <ul class="check-list">
+                <li>Not a browser or autonomous research crawler</li>
+                <li>Not a replacement for factual verification or editorial sign-off</li>
+                <li>Not a multi-agent orchestration framework</li>
+                <li>Not a promise that a larger prompt alone will become disciplined output</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">Workflow model</p>
+            <h2>The core objects are the point.</h2>
+            <p>
+              A serious content system should not hide its standards inside one giant prompt.
+              Socrates materializes those standards into distinct objects so teams can reason about
+              them, test them, and expose only the right parts downstream.
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="page-card">
+              <h3>ContentRequest</h3>
+              <p>
+                Declares topic, audience, goal, platform, content type, constraints, tone notes,
+                and supporting inputs. This is the operational brief.
+              </p>
+            </article>
+            <article class="page-card">
+              <h3>ContentFrame</h3>
+              <p>
+                Captures audience pains, desired takeaway, persuasion triggers, credibility rules,
+                tone rules, anti-patterns, and the core angle.
+              </p>
+            </article>
+            <article class="page-card">
+              <h3>ContentOutline</h3>
+              <p>
+                Adds section order, evidence needs, hooks, pacing, and CTA placement for tasks
+                where structure matters enough to justify the cost.
+              </p>
+            </article>
+            <article class="page-card">
+              <h3>ContentDraft and ReviewReport</h3>
+              <p>
+                Separates outward-facing copy from the internal review stage, so final content
+                stays clean while the system still audits for repetition and weak claims.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section-accent">
+          <div class="section-head">
+            <p class="eyebrow">Why teams use it</p>
+            <h2>Professional content work has more failure modes than grammar.</h2>
+          </div>
+          <div class="narrative">
+            <p>
+              In practice, most weak AI-generated content fails because the model was never forced
+              to decide what credibility looks like for the specific audience, what order the
+              argument should unfold in, what phrases would sound synthetic, and what claims need
+              concrete support.
+            </p>
+            <p>
+              Socrates exists to make those decisions explicit. That lets teams keep throughput
+              without allowing their content system to slide into polished but generic output.
+            </p>
+            <p>
+              The result is not magic. It is a clearer contract between the generation pipeline and
+              the editorial standard the team is actually trying to enforce.
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">Architecture</p>
+            <h2>A compact interface that still fits product pipelines.</h2>
+          </div>
+          <div class="install-grid">
+            <article class="install-card">
+              <h3>SDK surface</h3>
+              <pre class="code-block"><code>client = Socrates.from_config()
+frame = client.frame(request)
+outline = client.outline(request, frame)
+draft = client.draft(request, frame=frame, outline=outline)
+review = client.review(request, draft, frame=frame)</code></pre>
+            </article>
+            <article class="install-card">
+              <h3>CLI surface</h3>
+              <pre class="code-block"><code>socrates presets
+socrates template blog_post --output request.yaml
+socrates frame request.yaml --json
+socrates generate request.yaml --mode guided
+socrates review draft.md --request request.yaml</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="section cta-band">
+          <div>
+            <p class="eyebrow">Continue</p>
+            <h2>See where the workflow fits best.</h2>
+            <p>
+              Socrates is most useful when the team knows content quality requires audience fit,
+              differentiation, and structural intent.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="./use-cases.html">Explore use cases</a>
+            <a class="button button-ghost" href="./docs.html">Read docs</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer footer-grid">
+        <div>
+          <strong>Socrates</strong>
+          <p>Strategy-first content generation for professional teams and AI builders.</p>
+        </div>
+        <div class="footer-links">
+          <a href="./index.html">Home</a>
+          <a href="./use-cases.html">Use Cases</a>
+          <a href="./docs.html">Docs</a>
+          <a href="./faq.html">FAQ</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+

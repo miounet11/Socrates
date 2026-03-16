@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3 - 2026-03-16
+
+- Added built-in content presets and starter request generation through `socrates presets` and `socrates template`.
+- Updated auto-routing to honor preset metadata before fallback content-type rules.
+- Expanded the public site into a multi-page product website with product, use-case, docs, and FAQ pages.
+- Improved site SEO with stronger metadata, richer internal linking, and an expanded sitemap.
+- Corrected public installation guidance to use the GitHub install path and renamed the Python distribution to avoid a PyPI name collision.
+
 ## 0.1.2 - 2026-03-16
 
 - Aligned packaged versioning with the published website deployment release.

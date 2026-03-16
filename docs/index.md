@@ -16,11 +16,27 @@ The public entrypoints are:
 - `Socrates.draft`
 - `Socrates.review`
 
+Useful CLI entrypoints:
+
+- `socrates presets`
+- `socrates template PRESET --output request.yaml`
+- `socrates frame request.yaml --json`
+- `socrates generate request.yaml --mode guided`
+- `socrates review draft.md --request request.yaml`
+
 Generation modes:
 
 - `direct`: fast transforms and lightweight content jobs
 - `guided`: frame + draft for standard publishable work
 - `full`: frame + outline + draft + review for high-value content
 
-See [architecture.md](architecture.md) for the implementation shape.
+Built-in presets:
 
+- `blog_post`
+- `linkedin_long_post`
+- `value_prop`
+- `industry_analysis`
+- `content_calendar`
+- `brand_narrative`
+
+See [architecture.md](architecture.md) for the implementation shape.

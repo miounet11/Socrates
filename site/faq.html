@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socrates FAQ | Providers, Review Coverage, Routing, and Deployment</title>
+    <meta
+      name="description"
+      content="Frequently asked questions about Socrates: what it does, what it does not do, routing, review limits, provider support, and deployment."
+    />
+    <link rel="canonical" href="https://ixinxiang.xyz/faq.html" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Socrates FAQ | Providers, Review Coverage, Routing, and Deployment"
+    />
+    <meta
+      property="og:description"
+      content="Clear answers about what Socrates is, what it is not, and how teams should use it."
+    />
+    <meta property="og:url" content="https://ixinxiang.xyz/faq.html" />
+    <meta property="og:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="theme-color" content="#f4efe5" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Socrates a general agent framework?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Socrates is a focused SDK and CLI for professional content generation workflows, not a general agent orchestration system."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Socrates verify claims against the web?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not in v0.1.x. The review stage helps identify publishability risks such as repetition and AI-sounding phrasing, but it is not a factual verification engine."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When should teams use full mode?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Use full mode when the content is high value, structurally sensitive, or directly tied to positioning, narrative quality, or editorial planning."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">S</span>
+          <span>Socrates</span>
+        </a>
+        <nav class="nav">
+          <a href="./product.html">Product</a>
+          <a href="./use-cases.html">Use Cases</a>
+          <a href="./docs.html">Docs</a>
+          <a href="./faq.html">FAQ</a>
+        </nav>
+        <a class="button button-ghost" href="https://github.com/miounet11/Socrates">GitHub</a>
+      </header>
+
+      <main>
+        <section class="page-hero">
+          <p class="eyebrow">FAQ</p>
+          <h1>Clear answers about what Socrates does and how to use it well.</h1>
+          <p class="hero-text">
+            The short version: Socrates gives professional teams a better structure for content
+            generation. It does not replace research, editorial judgment, or domain expertise.
+          </p>
+        </section>
+
+        <section class="section-tight faq-list">
+          <details open>
+            <summary>Is Socrates a general agent framework?</summary>
+            <p>
+              No. It is a focused generation layer for professional content systems. The goal is
+              not to orchestrate arbitrary tools and agents. The goal is to make content standards
+              explicit before drafting.
+            </p>
+          </details>
+          <details>
+            <summary>Does Socrates verify claims against the web?</summary>
+            <p>
+              Not in the current release. The review stage is aimed at publishability risks such as
+              repetition, unsupported certainty, and AI-flavored phrasing. Teams should still handle
+              factual verification separately.
+            </p>
+          </details>
+          <details>
+            <summary>When should teams use direct, guided, or full mode?</summary>
+            <p>
+              Use direct mode for utility transforms. Use guided mode for normal publishing work
+              like blogs or LinkedIn. Use full mode for high-stakes content where structure and
+              review materially affect the result.
+            </p>
+          </details>
+          <details>
+            <summary>Why not just write a more detailed prompt?</summary>
+            <p>
+              Because a large prompt still hides the standard inside prose. Socrates converts that
+              standard into typed artifacts that are easier to inspect, test, and reuse across a
+              product or team workflow.
+            </p>
+          </details>
+          <details>
+            <summary>Which providers does Socrates support?</summary>
+            <p>
+              The current release ships with an OpenAI-compatible chat-completions adapter. The
+              provider boundary is intentionally narrow so additional adapters can be added cleanly.
+            </p>
+          </details>
+          <details>
+            <summary>Is the website itself production-ready?</summary>
+            <p>
+              The public product site is deployed as a static site and is designed to be served
+              from either GitHub Pages or a standard Nginx docroot. HTTPS can be enabled as soon as
+              the production domain resolves to the deployment server.
+            </p>
+          </details>
+        </section>
+
+        <section class="section cta-band">
+          <div>
+            <p class="eyebrow">Continue</p>
+            <h2>Move from overview to implementation.</h2>
+            <p>
+              The docs page covers installation and commands. The use-case page helps teams decide
+              where the workflow depth is worth paying for.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="./docs.html">Read docs</a>
+            <a class="button button-ghost" href="./use-cases.html">See use cases</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer footer-grid">
+        <div>
+          <strong>Socrates</strong>
+          <p>Strategy-first content generation for professional teams and AI builders.</p>
+        </div>
+        <div class="footer-links">
+          <a href="./index.html">Home</a>
+          <a href="./product.html">Product</a>
+          <a href="./use-cases.html">Use Cases</a>
+          <a href="./docs.html">Docs</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

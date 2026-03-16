@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Socrates Docs | Install, Presets, Templates, and CLI Commands</title>
+    <meta
+      name="description"
+      content="Socrates documentation: installation, configuration, built-in presets, request templates, CLI commands, and the core object model."
+    />
+    <link rel="canonical" href="https://ixinxiang.xyz/docs.html" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:title"
+      content="Socrates Docs | Install, Presets, Templates, and CLI Commands"
+    />
+    <meta
+      property="og:description"
+      content="The practical quickstart and command reference for Socrates."
+    />
+    <meta property="og:url" content="https://ixinxiang.xyz/docs.html" />
+    <meta property="og:image" content="https://ixinxiang.xyz/og.svg" />
+    <meta name="theme-color" content="#f4efe5" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">S</span>
+          <span>Socrates</span>
+        </a>
+        <nav class="nav">
+          <a href="./product.html">Product</a>
+          <a href="./use-cases.html">Use Cases</a>
+          <a href="./docs.html">Docs</a>
+          <a href="./faq.html">FAQ</a>
+        </nav>
+        <a class="button button-ghost" href="https://github.com/miounet11/Socrates">GitHub</a>
+      </header>
+
+      <main>
+        <section class="page-hero">
+          <p class="eyebrow">Docs</p>
+          <h1>Install fast, choose a preset, and generate from a proper brief.</h1>
+          <p class="hero-text">
+            The fastest way to evaluate Socrates is to install the package, inspect built-in
+            presets, generate a starter request file, and run a guided draft.
+          </p>
+        </section>
+
+        <section class="section-tight">
+          <div class="install-grid">
+            <article class="install-card">
+              <h3>Install</h3>
+              <pre class="code-block"><code>uv tool install git+https://github.com/miounet11/Socrates.git
+socrates init
+export OPENAI_API_KEY=your-key</code></pre>
+            </article>
+            <article class="install-card">
+              <h3>Immediate workflow</h3>
+              <pre class="code-block"><code>socrates presets
+socrates template blog_post --output request.yaml
+socrates generate request.yaml --mode guided</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">CLI reference</p>
+            <h2>The commands that matter most.</h2>
+          </div>
+          <div class="resource-grid">
+            <article class="resource-card">
+              <h3>`socrates presets`</h3>
+              <p>List built-in content presets and their recommended modes.</p>
+            </article>
+            <article class="resource-card">
+              <h3>`socrates template PRESET`</h3>
+              <p>Generate a starter YAML request that matches a built-in preset.</p>
+            </article>
+            <article class="resource-card">
+              <h3>`socrates frame request.yaml`</h3>
+              <p>Generate only the strategy/rubric layer when you want to inspect it directly.</p>
+            </article>
+            <article class="resource-card">
+              <h3>`socrates generate request.yaml`</h3>
+              <p>Generate content with `auto`, `direct`, `guided`, or `full` mode.</p>
+            </article>
+            <article class="resource-card">
+              <h3>`socrates review draft.md --request request.yaml`</h3>
+              <p>Run the review stage against an existing markdown draft.</p>
+            </article>
+            <article class="resource-card">
+              <h3>`socrates doctor`</h3>
+              <p>Inspect local provider configuration and confirm credentials are present.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section section-accent">
+          <div class="section-head">
+            <p class="eyebrow">Starter presets</p>
+            <h2>The built-in presets model the common professional workflows.</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Preset</th>
+                  <th>Mode</th>
+                  <th>Platform</th>
+                  <th>Use</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>blog_post</td>
+                  <td>guided</td>
+                  <td>blog</td>
+                  <td>Publishable long-form articles with clearer argument structure</td>
+                </tr>
+                <tr>
+                  <td>linkedin_long_post</td>
+                  <td>guided</td>
+                  <td>linkedin</td>
+                  <td>Operator-style posts with stronger hooks and pacing</td>
+                </tr>
+                <tr>
+                  <td>value_prop</td>
+                  <td>guided</td>
+                  <td>web</td>
+                  <td>Landing-page and positioning copy</td>
+                </tr>
+                <tr>
+                  <td>industry_analysis</td>
+                  <td>full</td>
+                  <td>blog</td>
+                  <td>Strategic analysis with stronger structure and review</td>
+                </tr>
+                <tr>
+                  <td>content_calendar</td>
+                  <td>full</td>
+                  <td>multi-platform</td>
+                  <td>Editorial planning across channels</td>
+                </tr>
+                <tr>
+                  <td>brand_narrative</td>
+                  <td>full</td>
+                  <td>web</td>
+                  <td>High-stakes positioning and narrative work</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <p class="eyebrow">Object model</p>
+            <h2>The product surface is intentionally small.</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="page-card">
+              <h3>ContentRequest</h3>
+              <p>The brief. Topic, audience, goal, platform, type, constraints, and tone notes.</p>
+            </article>
+            <article class="page-card">
+              <h3>ContentFrame</h3>
+              <p>The standard. Pain, persuasion, credibility, tone, anti-patterns, and angle.</p>
+            </article>
+            <article class="page-card">
+              <h3>ContentOutline</h3>
+              <p>The structure. Hooks, section order, evidence needs, and CTA placement.</p>
+            </article>
+            <article class="page-card">
+              <h3>ContentDraft and ReviewReport</h3>
+              <p>The deliverable and the editorial audit that keeps the work publishable.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section cta-band">
+          <div>
+            <p class="eyebrow">Next step</p>
+            <h2>Use the planner or open the repo.</h2>
+            <p>
+              The website explains the model, but the fastest evaluation path is still: generate a
+              template, run a preset, and inspect the resulting frame and draft.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="./index.html#playground">Open planner</a>
+            <a class="button button-ghost" href="https://github.com/miounet11/Socrates">
+              View repository
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer footer-grid">
+        <div>
+          <strong>Socrates</strong>
+          <p>Strategy-first content generation for professional teams and AI builders.</p>
+        </div>
+        <div class="footer-links">
+          <a href="./index.html">Home</a>
+          <a href="./product.html">Product</a>
+          <a href="./use-cases.html">Use Cases</a>
+          <a href="./faq.html">FAQ</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

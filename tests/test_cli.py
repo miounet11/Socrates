@@ -63,6 +63,36 @@ def test_generate_outputs_json(tmp_path: Path, monkeypatch, content_request) -> 
     assert payload["draft"]["title"].startswith("AI messaging fails")
 
 
+def test_presets_outputs_json() -> None:
+    result = runner.invoke(app, ["presets", "--json"])
+
+    assert result.exit_code == 0
+    payload = json.loads(result.stdout)
+    assert any(preset["key"] == "blog_post" for preset in payload)
+
+
+def test_template_writes_yaml_file(tmp_path: Path) -> None:
+    output_path = tmp_path / "request.yaml"
+
+    result = runner.invoke(
+        app,
+        [
+            "template",
+            "blog_post",
+            "--topic",
+            "Custom topic",
+            "--output",
+            str(output_path),
+        ],
+    )
+
+    assert result.exit_code == 0
+    assert output_path.exists()
+    body = output_path.read_text(encoding="utf-8")
+    assert "Custom topic" in body
+    assert "content_type: blog_post" in body
+
+
 def test_review_outputs_summary(tmp_path: Path, monkeypatch, content_request) -> None:
     request_path = tmp_path / "request.yaml"
     request_path.write_text(content_request.model_dump_json(), encoding="utf-8")

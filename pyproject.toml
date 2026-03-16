@@ -3,8 +3,8 @@ requires = ["hatchling>=1.27.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "socrates-ai"
-version = "0.1.2"
+name = "socrates-strategy-ai"
+version = "0.1.3"
 description = "Rubric-guided content generation for publishable drafts."
 readme = "README.md"
 requires-python = ">=3.11"
@@ -51,7 +51,8 @@ dev = [
 socrates = "socrates.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/miounet11/Socrates"
+Homepage = "https://miounet11.github.io/Socrates/"
+Documentation = "https://miounet11.github.io/Socrates/docs.html"
 Repository = "https://github.com/miounet11/Socrates"
 Issues = "https://github.com/miounet11/Socrates/issues"
 

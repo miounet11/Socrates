@@ -13,6 +13,7 @@ from socrates import Socrates
 from socrates.config import find_config_path, load_config, write_default_config
 from socrates.exceptions import ConfigurationError, ProviderError
 from socrates.models import ContentDraft, ContentRequest, GenerationMode, ReviewReport
+from socrates.presets import build_request_from_preset, list_presets
 
 app = typer.Typer(
     help="Rubric-guided content generation for publishable drafts.",
@@ -31,6 +32,12 @@ REQUEST_OPTION = typer.Option(
     readable=True,
     resolve_path=True,
     help="YAML request file used for the original generation.",
+)
+OUTPUT_PATH_OPTION = typer.Option(
+    None,
+    "--output",
+    resolve_path=True,
+    help="Write the YAML template to a file instead of stdout.",
 )
 
 
@@ -72,6 +79,10 @@ def _emit_json(model: BaseModel) -> None:
     typer.echo(model.model_dump_json(indent=2, exclude_none=True))
 
 
+def _emit_data_json(data: object) -> None:
+    typer.echo(json.dumps(data, indent=2))
+
+
 def _render_markdown_draft(draft: ContentDraft) -> str:
     pieces = [f"# {draft.title}", "", draft.body.strip()]
     if draft.summary:
@@ -97,6 +108,16 @@ def _render_review(report: ReviewReport) -> str:
                 f"{finding.evidence} -> {finding.recommendation}"
             )
     return "\n".join(lines)
+
+
+def _render_presets_table() -> str:
+    rows = ["Preset | Mode | Platform | Summary", "--- | --- | --- | ---"]
+    for preset in list_presets():
+        rows.append(
+            f"{preset.key} | {preset.recommended_mode.value} | "
+            f"{preset.platform} | {preset.summary}"
+        )
+    return "\n".join(rows)
 
 
 @app.command()
@@ -131,6 +152,57 @@ def frame(
         return
 
     typer.echo(json.dumps(frame_result.model_dump(mode="json"), indent=2))
+
+
+@app.command()
+def presets(
+    json_output: bool = JSON_OUTPUT_OPTION,
+) -> None:
+    """List built-in content presets and their recommended modes."""
+
+    preset_list = list_presets()
+    if json_output:
+        _emit_data_json([preset.model_dump(mode="json") for preset in preset_list])
+        return
+    typer.echo(_render_presets_table())
+
+
+@app.command()
+def template(
+    preset: str = typer.Argument(..., help="Preset key, for example blog_post."),
+    topic: str | None = typer.Option(None, "--topic", help="Override the preset topic."),
+    audience: str | None = typer.Option(
+        None,
+        "--audience",
+        help="Override the preset audience.",
+    ),
+    goal: str | None = typer.Option(None, "--goal", help="Override the preset goal."),
+    output_path: Path | None = OUTPUT_PATH_OPTION,
+) -> None:
+    """Generate a starter YAML request from a built-in preset."""
+
+    try:
+        request = build_request_from_preset(
+            preset,
+            topic=topic,
+            audience=audience,
+            goal=goal,
+        )
+    except KeyError as exc:
+        typer.echo(f"Unknown preset: {preset}", err=True)
+        raise typer.Exit(code=1) from exc
+
+    payload = yaml.safe_dump(
+        request.model_dump(mode="json", exclude_none=True),
+        sort_keys=False,
+        allow_unicode=False,
+    )
+    if output_path is not None:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(payload, encoding="utf-8")
+        typer.echo(f"Wrote {output_path}")
+        return
+    typer.echo(payload.rstrip())
 
 
 @app.command()

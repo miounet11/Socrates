@@ -12,6 +12,8 @@ It is designed for AI builders, content systems, and product teams that need con
 - opinionated without sounding generic
 - reproducible in code and config
 
+Project site: `https://miounet11.github.io/Socrates/`
+
 ## Why Socrates
 
 Single-shot prompting tends to optimize for speed, not standards. That produces content that is readable but shallow, generic, and structurally interchangeable.
@@ -24,10 +26,10 @@ Socrates makes the standards explicit:
 
 ## Quickstart
 
-Install with `uv` or `pip`:
+Install the CLI directly from GitHub:
 
 ```bash
-uv pip install socrates-ai
+uv tool install git+https://github.com/miounet11/Socrates.git
 ```
 
 Or install locally from source:
@@ -50,22 +52,34 @@ Set credentials:
 export OPENAI_API_KEY=your-key
 ```
 
+Inspect the built-in presets:
+
+```bash
+socrates presets
+```
+
+Generate a starter request from a preset:
+
+```bash
+socrates template blog_post --output request.yaml
+```
+
 Generate a frame:
 
 ```bash
-socrates frame examples/blog_post.yaml --json
+socrates frame request.yaml --json
 ```
 
 Generate a draft:
 
 ```bash
-socrates generate examples/blog_post.yaml --mode guided --format markdown
+socrates generate request.yaml --mode guided --format markdown
 ```
 
 Run a review pass:
 
 ```bash
-socrates review draft.md --request examples/blog_post.yaml
+socrates review draft.md --request request.yaml
 ```
 
 ## 30-second Python example
@@ -189,6 +203,24 @@ flowchart LR
 
 More detail lives in [docs/index.md](docs/index.md) and [docs/architecture.md](docs/architecture.md).
 
+## Built-in presets
+
+Socrates now ships starter presets that encode common professional content workflows:
+
+- `blog_post`
+- `linkedin_long_post`
+- `value_prop`
+- `industry_analysis`
+- `content_calendar`
+- `brand_narrative`
+
+These presets are available through:
+
+```bash
+socrates presets
+socrates template brand_narrative --output request.yaml
+```
+
 ## Comparisons
 
 Socrates is not:
@@ -216,11 +248,10 @@ uv build
 ## Roadmap
 
 - Anthropic adapter
-- richer content presets
+- custom preset loading from user config
 - citation-aware review mode
 - docs site and cookbook
 
 ## License
 
 MIT
-

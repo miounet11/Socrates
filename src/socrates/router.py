@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from socrates.models import ContentRequest, GenerationMode
+from socrates.presets import find_preset
 
 DIRECT_TYPES = {
     "summary",
@@ -44,6 +45,9 @@ def resolve_mode(
         return mode
 
     content_type = request.content_type.strip().lower().replace("-", "_")
+    preset = find_preset(content_type)
+    if preset is not None:
+        return preset.recommended_mode
     if content_type in DIRECT_TYPES:
         return GenerationMode.DIRECT
     if content_type in FULL_TYPES:
