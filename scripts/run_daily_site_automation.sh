@@ -16,7 +16,9 @@ SOCRATES_BIN="${SOCRATES_BIN:-$VENV_DIR/bin/socrates}"
 mkdir -p "$OUTPUT_DIR" "$(dirname "$STATE_FILE")" "$DOCROOT"
 
 cd "$REPO_DIR"
-git pull --ff-only
+if ! git pull --ff-only; then
+  echo "warning: git pull failed, continuing with the current checkout" >&2
+fi
 
 if [[ ! -x "$PYTHON_BIN" ]]; then
   python3 -m venv "$VENV_DIR"
