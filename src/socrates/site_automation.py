@@ -760,6 +760,477 @@ def _review_site_article(
     return client.review(request, draft)
 
 
+def _fallback_meta_description(seed: TopicSeed, locale: str) -> str:
+    keyword = _seed_keyword(seed, locale)
+    audience = _seed_audience(seed, locale)
+    if locale == "zh-CN":
+        return (
+            f"面向{audience}的{keyword}实用页面, 说明团队如何用更清晰的结构、"
+            "可信度和发布标准完成专业内容。"
+        )
+    return (
+        f"A practical page on {keyword} for {audience}, showing how teams improve "
+        "structure, credibility, and publishable output."
+    )
+
+
+def _fallback_summary(seed: TopicSeed, locale: str) -> str:
+    keyword = _seed_keyword(seed, locale)
+    audience = _seed_audience(seed, locale)
+    if locale == "zh-CN":
+        return (
+            f"{keyword}真正有价值的地方, 不只是帮助团队写得更快, 而是帮助{audience}"
+            "先把标准、结构和受众匹配关系说清楚。"
+        )
+    return (
+        f"{keyword} matters because it helps {audience} clarify standards, structure, "
+        "and audience fit before publishing."
+    )
+
+
+def _fallback_intro(seed: TopicSeed, locale: str) -> list[str]:
+    keyword = _seed_keyword(seed, locale)
+    audience = _seed_audience(seed, locale)
+    cluster = _seed_cluster(seed, locale)
+    angle = _seed_angle(seed, locale)
+    if locale == "zh-CN":
+        return [
+            (
+                f"很多团队讨论{keyword}时, 只把它当成写作技巧或提示词问题。真正重要的,"
+                f" 是它如何帮助{audience}在{cluster}层面建立更稳定的内容判断。"
+            ),
+            (
+                f"这也是这类页面值得单独解释的原因: {angle}。当标准先于正文被明确,"
+                " 后续起草、审稿和发布都会更稳。"
+            ),
+        ]
+    return [
+        (
+            f"Teams often talk about {keyword} as if it were only a writing tactic. The "
+            f"real value is how it helps {audience} create stronger standards inside "
+            f"{cluster} work."
+        ),
+        (
+            f"That is why this topic deserves a dedicated page: {angle} Once the standard "
+            "is explicit, drafting, review, and publishing become far more reliable."
+        ),
+    ]
+
+
+def _fallback_pattern_section(seed: TopicSeed, locale: str) -> SiteArticleSection:
+    keyword = _seed_keyword(seed, locale)
+    audience = _seed_audience(seed, locale)
+    pattern = seed.pattern_key
+    if locale == "zh-CN":
+        section_map = {
+            "guide": (
+                f"{keyword}的实用工作流",
+                [
+                    (
+                        "先说明目标读者、页面目标和核心结论, 再决定信息顺序和例子位置。"
+                        " 这样内容会更像面向真实业务场景的页面, 而不是泛泛解释。"
+                    ),
+                    (
+                        f"对{audience}来说, 关键不是把所有信息都塞进去, 而是按读者最关心的"
+                        "问题组织内容。"
+                    ),
+                ],
+                ["先明确目标", "再安排结构", "最后对照标准复核"],
+            ),
+            "checklist": (
+                f"{keyword}检查清单",
+                [
+                    (
+                        "把页面拆成可复核的检查项, 比把要求写成一段抽象说明更稳。"
+                        " 团队可以在起草前后都使用同一套标准。"
+                    ),
+                    (
+                        "这类清单通常应覆盖读者定位、可信度要求、结构节奏和 CTA 匹配度。"
+                    ),
+                ],
+                ["读者是否明确", "关键信号是否具体", "CTA 是否顺着读者意图"],
+            ),
+            "template": (
+                f"{keyword}模板结构",
+                [
+                    (
+                        "模板最有价值的地方不是节省打字, 而是让团队以同一种结构开始工作。"
+                    ),
+                    (
+                        "只要字段设计围绕真实判断点展开, 模板就能减少空话和结构漂移。"
+                    ),
+                ],
+                ["保留核心字段", "为每个字段写明用途", "标注常见误填方式"],
+            ),
+            "mistakes": (
+                f"{keyword}最常见的误区",
+                [
+                    (
+                        "大多数失败并不是因为团队不会写, 而是因为它们把重点放在表面流畅,"
+                        " 忽略了真正影响读者判断的顺序和证据。"
+                    ),
+                    (
+                        "一旦误区被提前写明, 后续生成和审稿就更容易保持一致。"
+                    ),
+                ],
+                ["不要先堆功能", "不要省略可信度信号", "不要用空泛 CTA 收尾"],
+            ),
+            "playbook": (
+                f"{keyword}操作手册",
+                [
+                    (
+                        "把主题写成 playbook, 可以帮助团队明确谁负责什么、按什么顺序执行,"
+                        " 以及哪些节点必须复核。"
+                    ),
+                    (
+                        "这类页面最适合高价值内容, 因为它会把流程拆成真正可执行的动作。"
+                    ),
+                ],
+                ["定义角色", "定义顺序", "定义复核点"],
+            ),
+            "examples": (
+                f"{keyword}示例拆解",
+                [
+                    (
+                        "示例页面应该优先展示真实情境中的前后差异, 而不是只重复定义。"
+                    ),
+                    (
+                        f"对{audience}来说, 具体示例通常比抽象理论更能帮助执行。"
+                    ),
+                ],
+                ["展示场景", "说明变化原因", "给出可迁移做法"],
+            ),
+        }
+    else:
+        section_map = {
+            "guide": (
+                f"A practical workflow for {keyword}",
+                [
+                    (
+                        "Start by naming the reader, the page goal, and the takeaway the "
+                        "content needs to create. That gives the page a working structure "
+                        "instead of a loose collection of points."
+                    ),
+                    (
+                        f"For {audience}, the priority is not adding every possible detail. "
+                        "It is sequencing the information around the questions that matter most."
+                    ),
+                ],
+                [
+                    "Clarify the objective first",
+                    "Sequence the argument second",
+                    "Review against the standard before publishing",
+                ],
+            ),
+            "checklist": (
+                f"A working checklist for {keyword}",
+                [
+                    (
+                        "Turning the topic into checkpoints is often more useful than writing "
+                        "a long abstract explanation. Teams can use the same list before and "
+                        "after drafting."
+                    ),
+                    (
+                        "The best checklists cover audience clarity, credibility signals, "
+                        "structural pacing, and CTA alignment."
+                    ),
+                ],
+                [
+                    "Is the reader clearly defined?",
+                    "Are the proof signals specific enough?",
+                    "Does the CTA follow reader intent?",
+                ],
+            ),
+            "template": (
+                f"A reusable template for {keyword}",
+                [
+                    (
+                        "Templates matter when they make teams start from the same decision "
+                        "structure rather than from the same empty page."
+                    ),
+                    (
+                        "If every field exists for a reason, the template reduces drift and "
+                        "keeps drafts closer to the intended audience outcome."
+                    ),
+                ],
+                [
+                    "Keep only decision-relevant fields",
+                    "Explain what each field controls",
+                    "Show what a weak fill-in looks like",
+                ],
+            ),
+            "mistakes": (
+                f"Common mistakes around {keyword}",
+                [
+                    (
+                        "Most teams do not fail because they cannot write. They fail because "
+                        "they optimize for surface fluency while skipping structure, proof, "
+                        "and reader sequencing."
+                    ),
+                    (
+                        "Documenting the mistakes early makes generation and review far more "
+                        "consistent."
+                    ),
+                ],
+                [
+                    "Do not lead with features alone",
+                    "Do not skip credibility signals",
+                    "Do not end with a generic CTA",
+                ],
+            ),
+            "playbook": (
+                f"A repeatable playbook for {keyword}",
+                [
+                    (
+                        "A playbook turns the topic into role ownership, sequence, and review "
+                        "points. That is what makes it operational instead of purely conceptual."
+                    ),
+                    (
+                        "This format is most useful for high-value content where repeatability "
+                        "matters as much as the draft itself."
+                    ),
+                ],
+                [
+                    "Assign ownership clearly",
+                    "Define execution order",
+                    "Document the review gates",
+                ],
+            ),
+            "examples": (
+                f"Examples that make {keyword} easier to apply",
+                [
+                    (
+                        "Example-driven pages work best when they show before-and-after choices "
+                        "instead of repeating definitions in new words."
+                    ),
+                    (
+                        f"For {audience}, concrete scenarios usually travel further than "
+                        "abstract advice."
+                    ),
+                ],
+                [
+                    "Show the context",
+                    "Explain what changed",
+                    "Extract a reusable lesson",
+                ],
+            ),
+        }
+    heading, paragraphs, bullets = section_map[pattern]
+    return SiteArticleSection(heading=heading, paragraphs=paragraphs, bullets=bullets)
+
+
+def _fallback_review_section(seed: TopicSeed, locale: str) -> SiteArticleSection:
+    audience = _seed_audience(seed, locale)
+    if locale == "zh-CN":
+        return SiteArticleSection(
+            heading="发布前应该重点复核什么",
+            paragraphs=[
+                (
+                    "真正影响页面质量的, 往往不是错别字, 而是有没有重复、有没有无支撑的判断、"
+                    "以及结构是否真的服务读者问题。"
+                ),
+                (
+                    f"对{audience}这类专业读者来说, 具体、克制和顺序正确, 往往比口号式表达"
+                    "更重要。"
+                ),
+            ],
+            bullets=[
+                "检查是否存在空话和重复",
+                "检查关键判断是否有具体支撑",
+                "检查 CTA 是否符合页面阶段",
+            ],
+        )
+    return SiteArticleSection(
+        heading="What to review before the page goes live",
+        paragraphs=[
+            (
+                "The quality risks that matter most are usually not grammar mistakes. They are "
+                "repetition, unsupported certainty, and structures that do not fully answer the "
+                "reader's real question."
+            ),
+            (
+                f"For professional readers like {audience}, specificity, restraint, and clean "
+                "sequencing usually matter more than high-energy phrasing."
+            ),
+        ],
+        bullets=[
+            "Check for filler and repetition",
+            "Verify that the key claims are grounded",
+            "Make sure the CTA fits the stage of the page",
+        ],
+    )
+
+
+def _fallback_foundation_section(seed: TopicSeed, locale: str) -> SiteArticleSection:
+    keyword = _seed_keyword(seed, locale)
+    audience = _seed_audience(seed, locale)
+    search_intent = _seed_intent(seed, locale)
+    if locale == "zh-CN":
+        return SiteArticleSection(
+            heading=f"{keyword}真正解决的是什么问题",
+            paragraphs=[
+                (
+                    f"从搜索意图看, 这类页面通常是在回答这样的问题: {search_intent}"
+                ),
+                (
+                    f"对{audience}来说, 重点不是把概念说得多复杂, 而是明确它如何影响团队的"
+                    "内容判断、结构安排和发布质量。"
+                ),
+            ],
+            bullets=[
+                "先定义问题边界",
+                "再解释为什么值得关注",
+                "最后连接到实际工作流",
+            ],
+        )
+    return SiteArticleSection(
+        heading=f"What teams are actually solving with {keyword}",
+        paragraphs=[
+            (
+                "At the search-intent level, this page is answering a simple question: "
+                f"{search_intent}"
+            ),
+            (
+                f"For {audience}, the practical concern is not a more abstract definition. "
+                "It is understanding how the concept changes standards, structure, and "
+                "publishability in real work."
+            ),
+        ],
+        bullets=[
+            "Define the boundary of the topic",
+            "Explain why it matters in practice",
+            "Connect it to an actual workflow",
+        ],
+    )
+
+
+def _fallback_audience_section(seed: TopicSeed, locale: str) -> SiteArticleSection:
+    audience = _seed_audience(seed, locale)
+    cluster = _seed_cluster(seed, locale)
+    angle = _seed_angle(seed, locale)
+    if locale == "zh-CN":
+        return SiteArticleSection(
+            heading=f"为什么{audience}特别需要这类能力",
+            paragraphs=[
+                (
+                    f"{audience}面对的核心难题, 往往不是信息不够, 而是如何在{cluster}工作里"
+                    "做出稳定、可解释的判断。"
+                ),
+                (
+                    f"这正是本页强调的角度: {angle}。当角度被明确后, 团队更容易把内容写得"
+                    "具体、可信、并且适合发布。"
+                ),
+            ],
+            bullets=[
+                "围绕读者问题建立判断",
+                "把可信度要求前置",
+                "让结构服务于最终结论",
+            ],
+        )
+    return SiteArticleSection(
+        heading=f"Why this matters for {audience}",
+        paragraphs=[
+            (
+                f"The hard part for {audience} is rarely a lack of information. It is making "
+                f"stable, explainable decisions inside {cluster} work."
+            ),
+            (
+                f"That is the angle this page emphasizes: {angle} Once the angle is explicit, "
+                "teams can produce content that feels more specific, credible, and publishable."
+            ),
+        ],
+        bullets=[
+            "Anchor decisions in the reader problem",
+            "Define credibility requirements early",
+            "Let structure serve the final takeaway",
+        ],
+    )
+
+
+def _fallback_faq(seed: TopicSeed, locale: str) -> list[SiteArticleFaq]:
+    keyword = _seed_keyword(seed, locale)
+    audience = _seed_audience(seed, locale)
+    if locale == "zh-CN":
+        return [
+            SiteArticleFaq(
+                question=f"{keyword}最适合用在哪些内容上?",
+                answer=(
+                    f"最适合高价值、需要结构和受众匹配的内容, 尤其适合{audience}"
+                    "面对的发布级页面。"
+                ),
+            ),
+            SiteArticleFaq(
+                question=f"团队刚开始使用{keyword}时最该避免什么?",
+                answer="最该避免的是只把它当成写作技巧, 却不把标准、证据和顺序写清楚。",
+            ),
+            SiteArticleFaq(
+                question=f"{keyword}应该如何进入实际工作流?",
+                answer=(
+                    "最稳的方式是把它放到 brief、结构设计和审稿节点里, 而不是只放在"
+                    "最终写作提示里。"
+                ),
+            ),
+        ]
+    return [
+        SiteArticleFaq(
+            question=f"What kinds of pages benefit most from {keyword}?",
+            answer=(
+                f"It adds the most value to high-stakes pages where {audience} need clearer "
+                "structure, stronger audience fit, and a cleaner review path."
+            ),
+        ),
+        SiteArticleFaq(
+            question=f"What should teams avoid when adopting {keyword}?",
+            answer=(
+                "The biggest mistake is treating it as a writing trick while leaving standards, "
+                "evidence, and sequencing undefined."
+            ),
+        ),
+        SiteArticleFaq(
+            question=f"How should {keyword} fit into a real workflow?",
+            answer=(
+                "The safest approach is to place it inside the brief, structure, and review "
+                "stages instead of leaving it only in the final drafting prompt."
+            ),
+        ),
+    ]
+
+
+def build_fallback_site_article(seed: TopicSeed, *, locale: str) -> SiteArticlePayload:
+    """Build a deterministic article payload when the live provider is unavailable."""
+
+    sections = [
+        _fallback_foundation_section(seed, locale),
+        _fallback_audience_section(seed, locale),
+        _fallback_pattern_section(seed, locale),
+        _fallback_review_section(seed, locale),
+    ]
+    if locale == "zh-CN":
+        return SiteArticlePayload(
+            meta_description=_fallback_meta_description(seed, locale),
+            summary=_fallback_summary(seed, locale),
+            intro=_fallback_intro(seed, locale),
+            sections=sections,
+            faq=_fallback_faq(seed, locale),
+            cta_heading="把这个主题接进稳定的内容系统",
+            cta_body="查看文档, 用 frame、outline、draft 和 review 组成更稳的发布工作流。",
+            cta_label="阅读文档",
+        )
+    return SiteArticlePayload(
+        meta_description=_fallback_meta_description(seed, locale),
+        summary=_fallback_summary(seed, locale),
+        intro=_fallback_intro(seed, locale),
+        sections=sections,
+        faq=_fallback_faq(seed, locale),
+        cta_heading="Turn this topic into a repeatable publishing asset",
+        cta_body=(
+            "Open the docs to connect frames, outlines, drafts, and review checks into a more "
+            "reliable publishing workflow."
+        ),
+        cta_label="Read the docs",
+    )
+
+
 def generate_site_article(
     client: Socrates,
     seed: TopicSeed,
@@ -770,6 +1241,7 @@ def generate_site_article(
     """Generate and review a site article, retrying once if needed."""
 
     notes: str | None = None
+    provider_failed = False
     for attempt in range(1, max_attempts + 1):
         try:
             article = client.provider.structured_completion(
@@ -796,7 +1268,28 @@ def generate_site_article(
             )
         except ProviderError as exc:
             notes = f"Attempt {attempt} hit a provider error: {exc}."
-    raise RuntimeError(f"Could not generate a safe publishable article for {seed.key} ({locale}).")
+            provider_failed = True
+            break
+
+    fallback_article = build_fallback_site_article(seed, locale=locale)
+    fallback_issues = validate_site_article(
+        _seed_title(seed, locale),
+        fallback_article,
+        locale=locale,
+        keyword=_seed_keyword(seed, locale),
+    )
+    fallback_review = _review_site_article(client, seed, fallback_article, locale=locale)
+    if (
+        not fallback_issues
+        and fallback_review.passes
+        and fallback_review.publishability_score >= 78
+    ):
+        return fallback_article, fallback_review.publishability_score
+
+    reason = "provider failure" if provider_failed else "review failure"
+    raise RuntimeError(
+        f"Could not generate a safe publishable article for {seed.key} ({locale}) after {reason}."
+    )
 
 
 def _article_relative_path(locale: str, slug: str) -> str:

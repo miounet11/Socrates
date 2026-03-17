@@ -5,11 +5,14 @@ from pathlib import Path
 
 from socrates.client import Socrates
 from socrates.config import SocratesConfig
+from socrates.exceptions import ProviderError
+from socrates.providers.base import LLMProvider, Message, T
 from socrates.site_automation import (
     GenerationSummary,
     SiteAutomationState,
     build_topic_inventory,
     generate_daily_site_content,
+    generate_site_article,
     load_state,
     select_next_topics,
 )
@@ -200,6 +203,18 @@ def _review_payload() -> dict[str, object]:
     }
 
 
+class FailingProvider(LLMProvider):
+    def structured_completion(
+        self,
+        *,
+        messages: list[Message],
+        response_model: type[T],
+        model: str,
+        temperature: float,
+    ) -> T:
+        raise ProviderError("simulated provider failure")
+
+
 def test_build_topic_inventory_is_unique() -> None:
     seeds = build_topic_inventory()
 
@@ -282,3 +297,15 @@ def test_generation_summary_model_defaults() -> None:
     assert summary.generated_seed_keys == []
     assert summary.generated_pages == []
     assert summary.skipped_seed_keys == []
+
+
+def test_generate_site_article_uses_fallback_when_provider_fails() -> None:
+    client = Socrates(FailingProvider(), config=SocratesConfig())
+    seed = build_topic_inventory()[2]
+
+    article, score = generate_site_article(client, seed, locale="en-US")
+
+    assert score >= 75
+    assert article.meta_description
+    assert len(article.sections) == 4
+    assert len(article.faq) == 3
