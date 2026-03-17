@@ -15,6 +15,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from socrates.client import Socrates
 from socrates.exceptions import ProviderError
 from socrates.models import ContentDraft, ContentRequest, ReviewReport
+from socrates.pipeline import heuristic_review
 
 SITE_DOMAIN = "https://ixinxiang.xyz"
 DEFAULT_STATE_PATH = Path("content/site_automation_state.json")
@@ -1278,7 +1279,17 @@ def generate_site_article(
         locale=locale,
         keyword=_seed_keyword(seed, locale),
     )
-    fallback_review = _review_site_article(client, seed, fallback_article, locale=locale)
+    if provider_failed:
+        fallback_review = heuristic_review(
+            ContentDraft(
+                title=_seed_title(seed, locale),
+                body=_article_to_markdown(_seed_title(seed, locale), fallback_article),
+                summary=fallback_article.summary,
+                cta=fallback_article.cta_body,
+            )
+        )
+    else:
+        fallback_review = _review_site_article(client, seed, fallback_article, locale=locale)
     if (
         not fallback_issues
         and fallback_review.passes
